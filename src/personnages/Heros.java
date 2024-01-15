@@ -6,6 +6,7 @@ public class Heros extends Personnage{
 
     public int or = 0;
 
+    public int niv = 1;
 
 
     public Heros(){};

@@ -45,6 +45,16 @@ public class Combat {
             joueur.pv = joueur.pvMax;
             System.out.println(vainqueur + " a gagné " + joueur.experience + " points d'experience et "
             + joueur.or + " pièces d'or.");
+
+
+            while(joueur.experience >= ( 10*Math.pow(2,joueur.niv))){
+                int xpPourProchainNiveau = (int)( 10*Math.pow(2,joueur.niv));
+                if(joueur.experience >= xpPourProchainNiveau  ) joueur.niv +=1;
+                joueur.experience = (joueur.experience - xpPourProchainNiveau);
+            }
+
+            System.out.println("le niveau du joueur est de " + joueur.niv);
+            System.out.println("Il reste " + joueur.experience + " points d'xp.");
         }
     }
 
