@@ -1,39 +1,20 @@
-import java.util.ArrayList;
+package personnages;
 
 public class Personnage {
-    protected String nom;
-    protected int pvMax;
-    protected int pv = pvMax;
-    protected int attaque;
+    public String nom;
+    public int pvMax;
+    public int pv = pvMax;
+    public int attaque;
+    public int armure;
 
 
-
-    public void combat(Personnage adversaire){
-
-        String vainqueur = "";
-
-        while (pv > 0 && adversaire.pv > 0){
-            if(pv > 0){
-                adversaire.pv -= attaque;
-                System.out.println("BIM ! PV de " + adversaire.nom + " = "+ adversaire.pv);
-            }
-            if(adversaire.pv > 0){
-                pv -= adversaire.attaque;
-                System.out.println("BAM !  PV de " + nom + " = "+ pv );
-            }
-
-        }
-        if(pv > 0) vainqueur += nom;
-        if(adversaire.pv > 0) vainqueur += adversaire.nom;
-        System.out.println("le combat est fini ! Le vainqueur est " + vainqueur +" !!!");
-    }
 
 
 
 
     @Override
     public String toString() {
-        return "Personnage{" +
+        return "joueurs.Personnage{" +
                 "nom='" + nom + '\'' +
                 ", pvMax=" + pvMax +
                 ", pv=" + pv +
@@ -42,6 +23,14 @@ public class Personnage {
     }
 
     public Personnage() {
+    }
+
+    public Personnage(String nom, int pvMax, int pv, int attaque, int armure) {
+        this.nom = nom;
+        this.pvMax = pvMax;
+        this.pv = pv;
+        this.attaque = attaque;
+        this.armure = armure;
     }
 
 
