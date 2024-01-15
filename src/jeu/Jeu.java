@@ -1,11 +1,11 @@
 package jeu;
 
 import personnages.Monstre;
-import personnages.Personnage;
 import personnages.Heros;
-import personnages.Personnage;
 
-public class Combat {
+import java.util.Scanner;
+
+public class Jeu {
 
 
     public static void combattre(Heros joueur, Monstre adversaire) {
@@ -25,28 +25,41 @@ public class Combat {
 
 
         if (joueur.pv > 0) {
-
             gainXpEtOr(joueur, adversaire, vainqueur);
-
             gainNiveau(joueur);
-
             infoGainDXp(joueur);
-
         }
         joueur.pv = joueur.pvMax;
     }
 
+
+
+
     public static void joueurCommence(Heros joueur, Monstre adversaire) {
         while (joueur.pv > 0 && adversaire.pv > 0) {
+
+
             if (joueur.pv > 0) {
-                int attaqueAleatoireJoueur = ((int) (Math.random() * joueur.attaque) + 1) - adversaire.armure;
 
-                if (attaqueAleatoireJoueur <= 0) attaqueAleatoireJoueur = 1;
-                adversaire.pv -= attaqueAleatoireJoueur;
+                Scanner scan = new Scanner(System.in);
+                System.out.println(joueur.nom + ", veux-tu attaquer (1) ou fuir (2) ?");
+                int choix = scan.nextInt();
 
-                if (adversaire.pv <= 0) adversaire.pv = 0;
-                System.out.println(joueur.nom + " attaque ! \n" + "BIM ! PV de " + adversaire.nom + " = " + adversaire.pv + "\n");
-            }
+
+                if(choix == 1){
+                    int attaqueAleatoireJoueur = ((int) (Math.random() * joueur.attaque) + 1) - adversaire.armure;
+
+                    if (attaqueAleatoireJoueur <= 0) attaqueAleatoireJoueur = 1;
+                    adversaire.pv -= attaqueAleatoireJoueur;
+
+                    if (adversaire.pv <= 0) adversaire.pv = 0;
+                    System.out.println(joueur.nom + " attaque ! \n" + "BIM ! PV de " + adversaire.nom + " = " + adversaire.pv + "\n");
+                }
+
+
+                }
+
+
             if (adversaire.pv > 0) {
                 int attaqueAleatoireAttaquant = ((int) (Math.random() * adversaire.attaque) + 1) - joueur.armure;
                 if (attaqueAleatoireAttaquant <= 0) {
@@ -75,14 +88,24 @@ public class Combat {
                     if (joueur.pv <= 0) joueur.pv = 0;
                     System.out.println(adversaire.nom + " attaque ! \n" + "BAM !  PV de " + joueur.nom + " = " + joueur.pv);
                 }
+
                 if (joueur.pv > 0) {
-                    int attaqueAleatoireJoueur = ((int) (Math.random() * joueur.attaque) + 1) - adversaire.armure;
 
-                    if (attaqueAleatoireJoueur <= 0) attaqueAleatoireJoueur = 1;
-                    adversaire.pv -= attaqueAleatoireJoueur;
+                    Scanner scan = new Scanner(System.in);
+                    System.out.println(joueur.nom + ", veux-tu attaquer (1) ou fuir (2) ?");
+                    int choix = scan.nextInt();
 
-                    if (adversaire.pv <= 0) adversaire.pv = 0;
-                    System.out.println(joueur.nom + " attaque ! \n" + "BIM ! PV de " + adversaire.nom + " = " + adversaire.pv + "\n");
+                    if(choix == 1){
+                        int attaqueAleatoireJoueur = ((int) (Math.random() * joueur.attaque) + 1) - adversaire.armure;
+
+                        if (attaqueAleatoireJoueur <= 0) attaqueAleatoireJoueur = 1;
+                        adversaire.pv -= attaqueAleatoireJoueur;
+
+                        if (adversaire.pv <= 0) adversaire.pv = 0;
+                        System.out.println(joueur.nom + " attaque ! \n" + "BIM ! PV de " + adversaire.nom + " = " + adversaire.pv + "\n");
+
+                    }
+
                 }
 
             }

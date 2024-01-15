@@ -2,7 +2,6 @@ package jeu;
 
 import personnages.Heros;
 import personnages.Monstre;
-import personnages.Personnage;
 
 public class MainClass {
 
@@ -19,9 +18,9 @@ public class MainClass {
         Monstre cell = new Monstre("Cell",70,70 , 8,4,30,8);
         Monstre buu = new Monstre("Buu",80,80,7,6,70,22);
 
-    Combat.combattre(vegeta,freezer );
-    Combat.combattre(vegeta,cell);
-    Combat.combattre(vegeta,buu);
+    Jeu.combattre(sangoku,freezer );
+    Jeu.combattre(sangoku,cell);
+    Jeu.combattre(sangoku,buu);
     }
 
 
