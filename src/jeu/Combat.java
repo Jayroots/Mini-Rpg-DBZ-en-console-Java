@@ -1,5 +1,8 @@
 package jeu;
 
+import personnages.Monstre;
+import personnages.Personnage;
+import personnages.Heros;
 import personnages.Personnage;
 public class Combat {
 
@@ -7,7 +10,7 @@ public class Combat {
 
 
 
-    public static void combattre(Personnage joueur, Personnage adversaire){
+    public static void combattre(Heros joueur, Monstre adversaire){
 
         String vainqueur = "";
 
@@ -35,29 +38,15 @@ public class Combat {
         if(joueur.pv > 0) vainqueur += joueur.nom;
         if(adversaire.pv > 0) vainqueur += adversaire.nom;
         System.out.println("Le combat est fini ! Le vainqueur est " + vainqueur.toUpperCase() +" !!!");
+        if(joueur.pv > 0){
+            joueur.experience = adversaire.niv * 20;
+//            joueur.or =
+            joueur.or = (int)Math.pow((int)(Math.random()*(10 + adversaire.niv)+1),2);
+            joueur.pv = joueur.pvMax;
+            System.out.println(vainqueur + " a gagné " + joueur.experience + " points d'experience et "
+            + joueur.or + " pièces d'or.");
+        }
     }
-
-
-//    public static void combattre(joueurs.Personnage attaquant, joueurs.Personnage adversaire){
-//
-//        String vainqueur = "";
-//
-//        while (attaquant.pv > 0 && adversaire.pv > 0){
-//            if(attaquant.pv > 0){
-//                adversaire.pv -= attaquant.attaque;
-//                System.out.println("BIM ! PV de " + adversaire.nom + " = "+ adversaire.pv);
-//            }
-//            if(adversaire.pv > 0){
-//                attaquant.pv -= adversaire.attaque;
-//                System.out.println("BAM !  PV de " + attaquant.nom + " = "+ attaquant.pv );
-//            }
-//
-//        }
-//        if(attaquant.pv > 0) vainqueur += attaquant.nom;
-//        if(adversaire.pv > 0) vainqueur += adversaire.nom;
-//        System.out.println("Le combat est fini ! Le vainqueur est " + vainqueur.toUpperCase() +" !!!");
-//    }
-
 
 
 }
