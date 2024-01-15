@@ -13,7 +13,7 @@ public class MainClass {
         Personnage vegeta = new Personnage("Vegeta", 90, 90,12,4);
         Personnage sangohan = new Personnage("San Gohan", 50, 50, 5,2);
 
-    Combat.combattre(sangohan,vegeta);
+    Combat.combattre(sangoku,vegeta);
 
     }
 
