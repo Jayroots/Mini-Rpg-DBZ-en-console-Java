@@ -17,6 +17,11 @@ public class Monstre extends Personnage{
         this.niv = niv;
     }
 
+    public Monstre(String nom, int pvMax, int pv, int attaque, int armure, int vitesse, int niv) {
+        super(nom, pvMax, pv, attaque, armure, vitesse);
+        this.niv = niv;
+    }
+
     public Monstre(String nom, int pvMax, int attaque, int niv) {
         super(nom, pvMax, attaque);
         this.niv = niv;

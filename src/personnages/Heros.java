@@ -15,6 +15,12 @@ public class Heros extends Personnage{
         this.or = or;
     }
 
+    public Heros(String nom, int pvMax, int pv, int attaque, int armure, int vitesse, int or, int niv) {
+        super(nom, pvMax, pv, attaque, armure, vitesse);
+        this.or = or;
+        this.niv = niv;
+    }
+
     public Heros(String nom, int pvMax, int pv, int attaque, int armure, int experience, int or) {
         super(nom, pvMax, pv, attaque, armure);
         this.experience = experience;

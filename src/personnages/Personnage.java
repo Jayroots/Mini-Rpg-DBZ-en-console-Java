@@ -7,7 +7,7 @@ public class Personnage {
     public int attaque;
     public int armure;
 
-
+    public int vitesse;
 
 
 
@@ -23,6 +23,15 @@ public class Personnage {
     }
 
     public Personnage() {
+    }
+
+    public Personnage(String nom, int pvMax, int pv, int attaque, int armure, int vitesse) {
+        this.nom = nom;
+        this.pvMax = pvMax;
+        this.pv = pv;
+        this.attaque = attaque;
+        this.armure = armure;
+        this.vitesse = vitesse;
     }
 
     public Personnage(String nom, int pvMax, int pv, int attaque, int armure) {
@@ -78,4 +87,21 @@ public class Personnage {
     public void setAttaque(int attaque) {
         this.attaque = attaque;
     }
+
+    public int getArmure() {
+        return armure;
+    }
+
+    public void setArmure(int armure) {
+        this.armure = armure;
+    }
+
+    public int getVitesse() {
+        return vitesse;
+    }
+
+    public void setVitesse(int vitesse) {
+        this.vitesse = vitesse;
+    }
+
 }
