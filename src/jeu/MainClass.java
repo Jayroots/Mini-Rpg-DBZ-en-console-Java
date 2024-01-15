@@ -20,7 +20,8 @@ public class MainClass {
         Monstre buu = new Monstre("Buu",80,80,7,6,22);
 
     Combat.combattre(vegeta,freezer );
-
+    Combat.combattre(vegeta,cell);
+    Combat.combattre(vegeta,buu);
     }
 
 
