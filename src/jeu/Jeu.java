@@ -17,7 +17,8 @@ public class Jeu {
         combatFini = false;
         String vainqueur = "";
 
-        achatPotions(joueur,boutique);
+        boutique.lireBoutique();
+        achatPotions(joueur, adversaire,boutique);
 
         if (joueur.vitesse > adversaire.vitesse) {
             joueurCommence(joueur, adversaire);
@@ -122,7 +123,7 @@ public class Jeu {
                     joueur.pv -= attaqueAleatoireAttaquant;
 
                     if (joueur.pv <= 0) joueur.pv = 0;
-                    System.out.println(adversaire.nom + " attaque ! \n" + "BAM !  PV de " + joueur.nom + " = " + joueur.pv);
+                    System.out.println("\n"+adversaire.nom + " attaque ! \n" + "BAM !  PV de " + joueur.nom + " = " + joueur.pv);
                 }
 
                 if (joueur.pv > 0 && !combatFini) {
@@ -141,7 +142,7 @@ public class Jeu {
                             adversaire.pv -= attaqueAleatoireJoueur;
 
                             if (adversaire.pv <= 0) adversaire.pv = 0;
-                            System.out.println(joueur.nom + " attaque ! \n" + "BIM ! PV de " + adversaire.nom + " = " + adversaire.pv + "\n");
+                            System.out.println(joueur.nom + " attaque ! \n" + "BIM ! PV de " + adversaire.nom + " = " + adversaire.pv );
 
                             break;
 
@@ -157,7 +158,7 @@ public class Jeu {
                                 adversaire.pv -= attaqueAleatoireMagiqueJoueur;
 
                                 if (adversaire.pv <= 0) adversaire.pv = 0;
-                                System.out.println(joueur.nom + " attaque ! \n" + "BIM ! PV de " + adversaire.nom + " = " + adversaire.pv + "\n");
+                                System.out.println("\n"+joueur.nom + " attaque ! \n" + "BIM ! PV de " + adversaire.nom + " = " + adversaire.pv );
                                 joueur.magie -= 5;
                             } else {
                                 System.out.println("Le personnage n'a plus de magie ! Saisir une autre action :");
@@ -225,37 +226,52 @@ public class Jeu {
 
     }
 
-        public static void achatPotions(Heros joueur,Boutique boutique){
-            boutique.lireBoutique();
+        public static void achatPotions(Heros joueur,Monstre adversaire,Boutique boutique){
+
             Scanner scan = new Scanner(System.in);
-            System.out.println("Veux tu acheter une potion parmi la liste ci-dessus : tape (1), (2), (3) ou aucune (4) ?");
+            System.out.println("Le combat va bientôt commencer contre " + adversaire.nom.toUpperCase()+" ! Veux tu acheter une potion parmi la liste ci-dessus : tape (1), (2), (3) ou aucune (4) ?");
             int choix = scan.nextInt();
 
             switch(choix){
                 case 1 :
-                    joueur.or =- boutique.getBoutique().getFirst().prix;
-                    joueur.potions.add(boutique.getBoutique().getFirst());
+                    if(joueur.or > boutique.getBoutique().getFirst().prix){
+                        joueur.or =- boutique.getBoutique().getFirst().prix;
+                        joueur.potions.add(boutique.getBoutique().getFirst());
+                        System.out.println("La " + boutique.getBoutique().getFirst().nom + " a bien été ajoutée à votre inventaire.");
 //                    System.out.println(joueur.potions.getFirst().nom);
-
-
+                    }else{
+                        System.out.println("Vous n'avez pas assez de pièces d'or.");
+                        achatPotions(joueur,adversaire,boutique);
+                    }
                     break ;
                 case 2 :
+                if(joueur.or > boutique.getBoutique().get(1).prix){
                     joueur.or =- boutique.getBoutique().get(1).prix;
                     joueur.potions.add(boutique.getBoutique().get(1));
-
+                    System.out.println("La " + boutique.getBoutique().get(1).nom + " a bien été ajoutée à votre inventaire.");
+                }
+                    else{
+                    System.out.println("Vous n'avez pas assez de pièces d'or.");
+                    achatPotions(joueur,adversaire,boutique);
+                }
 
                     break ;
                 case 3 :
+                    if(joueur.or > boutique.getBoutique().get(2).prix){
                     joueur.or =- boutique.getBoutique().get(2).prix;
                     joueur.potions.add(boutique.getBoutique().get(2));
-
+                        System.out.println("La " + boutique.getBoutique().get(2).nom + " a bien été ajoutée à votre inventaire.");
+                } else {
+                        System.out.println("Vous n'avez pas assez de pièces d'or.");
+                        achatPotions(joueur,adversaire,boutique);
+                    }
                     break;
                 case 4 :
                     System.out.println("C'est noté! Nous espérons vous revoir bientôt dans notre boutique :) ");
                     break;
                 default :
                     System.out.println("saisie invalide");
-                    achatPotions(joueur,boutique);
+                    achatPotions(joueur,adversaire,boutique);
                     break;
             }
         }
