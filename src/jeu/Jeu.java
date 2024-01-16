@@ -46,15 +46,24 @@ public class Jeu {
                 int choix = scan.nextInt();
 
 
-                if(choix == 1){
-                    int attaqueAleatoireJoueur = ((int) (Math.random() * joueur.attaque) + 1) - adversaire.armure;
+                switch (choix) {
+                    case 1:
+                        int attaqueAleatoireJoueur = ((int) (Math.random() * joueur.attaque) + 1) - adversaire.armure;
 
-                    if (attaqueAleatoireJoueur <= 0) attaqueAleatoireJoueur = 1;
-                    adversaire.pv -= attaqueAleatoireJoueur;
+                        if (attaqueAleatoireJoueur <= 0) attaqueAleatoireJoueur = 1;
+                        adversaire.pv -= attaqueAleatoireJoueur;
 
-                    if (adversaire.pv <= 0) adversaire.pv = 0;
-                    System.out.println(joueur.nom + " attaque ! \n" + "BIM ! PV de " + adversaire.nom + " = " + adversaire.pv + "\n");
+                        if (adversaire.pv <= 0) adversaire.pv = 0;
+                        System.out.println(joueur.nom + " attaque ! \n" + "BIM ! PV de " + adversaire.nom + " = " + adversaire.pv + "\n");
+
+                        break;
+
+                    default:
+                        System.out.println("saisie invalide");
+                        joueurCommence(joueur, adversaire);
+
                 }
+
 
 
                 }
@@ -95,7 +104,10 @@ public class Jeu {
                     System.out.println(joueur.nom + ", veux-tu attaquer (1) ou fuir (2) ?");
                     int choix = scan.nextInt();
 
-                    if(choix == 1){
+                    switch (choix){
+
+                        case 1 :
+
                         int attaqueAleatoireJoueur = ((int) (Math.random() * joueur.attaque) + 1) - adversaire.armure;
 
                         if (attaqueAleatoireJoueur <= 0) attaqueAleatoireJoueur = 1;
@@ -103,6 +115,14 @@ public class Jeu {
 
                         if (adversaire.pv <= 0) adversaire.pv = 0;
                         System.out.println(joueur.nom + " attaque ! \n" + "BIM ! PV de " + adversaire.nom + " = " + adversaire.pv + "\n");
+
+                        break;
+
+
+                        default:
+                            System.out.println("saisie invalide");
+                            joueurCommence(joueur, adversaire);
+
 
                     }
 
