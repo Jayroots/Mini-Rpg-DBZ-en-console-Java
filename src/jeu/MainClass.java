@@ -21,6 +21,11 @@ public class MainClass {
     Jeu.combattre(sangoku,freezer );
     Jeu.combattre(sangoku,cell);
     Jeu.combattre(sangoku,buu);
+
+
+
+
+
     }
 
 

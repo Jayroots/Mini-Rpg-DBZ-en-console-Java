@@ -1,6 +1,6 @@
 package personnages;
 
-public class Personnage {
+public abstract class Personnage {
     public String nom;
     public int pvMax;
     public int pv = pvMax;

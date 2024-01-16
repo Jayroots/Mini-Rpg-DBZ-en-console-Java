@@ -3,13 +3,15 @@ package jeu;
 import personnages.Monstre;
 import personnages.Heros;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Jeu {
 
-
+    static boolean  combatFini = false;
     public static void combattre(Heros joueur, Monstre adversaire) {
 
+        combatFini = false;
         String vainqueur = "";
 
         if (joueur.vitesse > adversaire.vitesse) {
@@ -19,12 +21,12 @@ public class Jeu {
         }
 
 
-        if (joueur.pv > 0) vainqueur += joueur.nom;
-        if (adversaire.pv > 0) vainqueur += adversaire.nom;
-        System.out.println("Le combat est fini ! Le vainqueur est " + vainqueur.toUpperCase() + " !!!\n");
+        if (joueur.pv > 0 && combatFini == false) vainqueur += joueur.nom;
+        if (adversaire.pv > 0 && combatFini == false) vainqueur += adversaire.nom;
+       if(!combatFini) System.out.println("Le combat est fini ! Le vainqueur est " + vainqueur.toUpperCase() + " !!!\n");
 
 
-        if (joueur.pv > 0) {
+        if (joueur.pv > 0 && combatFini == false) {
             gainXpEtOr(joueur, adversaire, vainqueur);
             gainNiveau(joueur);
             infoGainDXp(joueur);
@@ -36,10 +38,10 @@ public class Jeu {
 
 
     public static void joueurCommence(Heros joueur, Monstre adversaire) {
-        while (joueur.pv > 0 && adversaire.pv > 0) {
+        while (joueur.pv > 0 && adversaire.pv > 0 && combatFini == false) {
 
 
-            if (joueur.pv > 0) {
+            if (joueur.pv > 0 && combatFini == false) {
 
                 Scanner scan = new Scanner(System.in);
                 System.out.println(joueur.nom + ", veux-tu attaquer (1) ou fuir (2) ?");
@@ -58,6 +60,10 @@ public class Jeu {
 
                         break;
 
+                    case 2 :
+                        uneChanceSurDeuxDeFuir(joueur);
+                        break;
+
                     default:
                         System.out.println("saisie invalide");
                         joueurCommence(joueur, adversaire);
@@ -69,7 +75,7 @@ public class Jeu {
                 }
 
 
-            if (adversaire.pv > 0) {
+            if (adversaire.pv > 0 && combatFini == false) {
                 int attaqueAleatoireAttaquant = ((int) (Math.random() * adversaire.attaque) + 1) - joueur.armure;
                 if (attaqueAleatoireAttaquant <= 0) {
                     attaqueAleatoireAttaquant = 1;
@@ -85,9 +91,9 @@ public class Jeu {
 
     public static void adversaireCommence(Heros joueur, Monstre adversaire) {
         {
-            while (joueur.pv > 0 && adversaire.pv > 0) {
+            while (joueur.pv > 0 && adversaire.pv > 0 && combatFini == false) {
 
-                if (adversaire.pv > 0) {
+                if (adversaire.pv > 0 && combatFini == false) {
                     int attaqueAleatoireAttaquant = ((int) (Math.random() * adversaire.attaque) + 1) - joueur.armure;
                     if (attaqueAleatoireAttaquant <= 0) {
                         attaqueAleatoireAttaquant = 1;
@@ -98,7 +104,7 @@ public class Jeu {
                     System.out.println(adversaire.nom + " attaque ! \n" + "BAM !  PV de " + joueur.nom + " = " + joueur.pv);
                 }
 
-                if (joueur.pv > 0) {
+                if (joueur.pv > 0 && combatFini == false) {
 
                     Scanner scan = new Scanner(System.in);
                     System.out.println(joueur.nom + ", veux-tu attaquer (1) ou fuir (2) ?");
@@ -116,8 +122,11 @@ public class Jeu {
                         if (adversaire.pv <= 0) adversaire.pv = 0;
                         System.out.println(joueur.nom + " attaque ! \n" + "BIM ! PV de " + adversaire.nom + " = " + adversaire.pv + "\n");
 
-                        break;
+                            break;
 
+                        case 2 :
+                            uneChanceSurDeuxDeFuir(joueur);
+                            break;
 
                         default:
                             System.out.println("saisie invalide");
@@ -161,4 +170,22 @@ public class Jeu {
         System.out.println("Il manque " + xpManquantePourProchainNiveau + " d'xp pour passer au prochain niveau.");
 
     }
+
+    public static void uneChanceSurDeuxDeFuir(Heros joueur){
+        Random r = new Random();
+        int resultatTirage = r.nextInt(2);
+
+        combatFini = false;
+
+
+
+        if(resultatTirage == 0){
+            System.out.println("Le combat est fini !  " + joueur.nom + " a pris la fuite !\n");
+            combatFini = true;
+        }
+        if(resultatTirage == 1){
+            System.out.println("fuite ratée, "+ joueur.nom + " n'a fait aucun dégât ! Le combat continue..");
+        }
+
+    };
 }
