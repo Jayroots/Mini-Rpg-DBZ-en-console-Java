@@ -1,5 +1,9 @@
 package personnages;
 
+import boutiqueDePotions.Potions;
+
+import java.util.ArrayList;
+
 public class Heros extends Personnage{
 
     public int experience = 0;
@@ -9,6 +13,8 @@ public class Heros extends Personnage{
     public int niv = 1;
 
     public int magie = 20;
+
+    public ArrayList<Potions> potions = new ArrayList<>();
     public Heros(){};
     public Heros(int experience, int or) {
         this.experience = experience;
@@ -44,6 +50,14 @@ public class Heros extends Personnage{
         super(nom, pvMax, pv, attaque);
         this.experience = experience;
         this.or = or;
+    }
+
+    public ArrayList<Potions> getPotions() {
+        return potions;
+    }
+
+    public void setPotions(ArrayList<Potions> potions) {
+        this.potions = potions;
     }
 
     public int getExperience() {

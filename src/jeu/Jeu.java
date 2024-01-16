@@ -1,5 +1,6 @@
 package jeu;
 
+import boutiqueDePotions.Boutique;
 import personnages.Monstre;
 import personnages.Heros;
 
@@ -8,12 +9,15 @@ import java.util.Scanner;
 
 public class Jeu {
 
+
     static boolean combatFini = false;
 
-    public static void combattre(Heros joueur, Monstre adversaire) {
+    public static void combattre(Heros joueur, Monstre adversaire, Boutique boutique) {
 
         combatFini = false;
         String vainqueur = "";
+
+        achatPotions(joueur,boutique);
 
         if (joueur.vitesse > adversaire.vitesse) {
             joueurCommence(joueur, adversaire);
@@ -221,5 +225,39 @@ public class Jeu {
 
     }
 
+        public static void achatPotions(Heros joueur,Boutique boutique){
+            boutique.lireBoutique();
+            Scanner scan = new Scanner(System.in);
+            System.out.println("Veux tu acheter une potion parmi la liste ci-dessus : tape (1), (2), (3) ou aucune (4) ?");
+            int choix = scan.nextInt();
+
+            switch(choix){
+                case 1 :
+                    joueur.or =- boutique.getBoutique().getFirst().prix;
+                    joueur.potions.add(boutique.getBoutique().getFirst());
+//                    System.out.println(joueur.potions.getFirst().nom);
+
+
+                    break ;
+                case 2 :
+                    joueur.or =- boutique.getBoutique().get(1).prix;
+                    joueur.potions.add(boutique.getBoutique().get(1));
+
+
+                    break ;
+                case 3 :
+                    joueur.or =- boutique.getBoutique().get(2).prix;
+                    joueur.potions.add(boutique.getBoutique().get(2));
+
+                    break;
+                case 4 :
+                    System.out.println("C'est noté! Nous espérons vous revoir bientôt dans notre boutique :) ");
+                    break;
+                default :
+                    System.out.println("saisie invalide");
+                    achatPotions(joueur,boutique);
+                    break;
+            }
+        }
 
 }
