@@ -8,11 +8,18 @@ public class Heros extends Personnage{
 
     public int niv = 1;
 
-
+    public int magie = 20;
     public Heros(){};
     public Heros(int experience, int or) {
         this.experience = experience;
         this.or = or;
+    }
+
+    public Heros(String nom, int pvMax, int pv, int attaque, int armure, int vitesse, int or, int niv, int magie) {
+        super(nom, pvMax, pv, attaque, armure, vitesse);
+        this.or = or;
+        this.niv = niv;
+        this.magie = magie;
     }
 
     public Heros(String nom, int pvMax, int pv, int attaque, int armure, int vitesse, int or, int niv) {

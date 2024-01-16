@@ -8,7 +8,8 @@ import java.util.Scanner;
 
 public class Jeu {
 
-    static boolean  combatFini = false;
+    static boolean combatFini = false;
+
     public static void combattre(Heros joueur, Monstre adversaire) {
 
         combatFini = false;
@@ -21,30 +22,30 @@ public class Jeu {
         }
 
 
-        if (joueur.pv > 0 && combatFini == false) vainqueur += joueur.nom;
-        if (adversaire.pv > 0 && combatFini == false) vainqueur += adversaire.nom;
-       if(!combatFini) System.out.println("Le combat est fini ! Le vainqueur est " + vainqueur.toUpperCase() + " !!!\n");
+        if (joueur.pv > 0 && !combatFini) vainqueur += joueur.nom;
+        if (adversaire.pv > 0 && !combatFini) vainqueur += adversaire.nom;
+        if (!combatFini)
+            System.out.println("Le combat est fini ! Le vainqueur est " + vainqueur.toUpperCase() + " !!!\n");
 
 
-        if (joueur.pv > 0 && combatFini == false) {
+        if (joueur.pv > 0 && !combatFini) {
             gainXpEtOr(joueur, adversaire, vainqueur);
             gainNiveau(joueur);
             infoGainDXp(joueur);
         }
         joueur.pv = joueur.pvMax;
+        joueur.magie = 20;
     }
 
 
-
-
     public static void joueurCommence(Heros joueur, Monstre adversaire) {
-        while (joueur.pv > 0 && adversaire.pv > 0 && combatFini == false) {
+        while (joueur.pv > 0 && adversaire.pv > 0 && !combatFini) {
 
 
-            if (joueur.pv > 0 && combatFini == false) {
+            if (joueur.pv > 0 && !combatFini) {
 
                 Scanner scan = new Scanner(System.in);
-                System.out.println(joueur.nom + ", veux-tu attaquer (1) ou fuir (2) ?");
+                System.out.println(joueur.nom + ", veux-tu attaquer (1), fuir (2) ou utiliser la magie (3) ?");
                 int choix = scan.nextInt();
 
 
@@ -60,8 +61,25 @@ public class Jeu {
 
                         break;
 
-                    case 2 :
+                    case 2:
                         uneChanceSurDeuxDeFuir(joueur);
+                        break;
+
+                    case 3:
+                        if (joueur.magie >= 5){
+                            int attaqueAleatoireMagiqueJoueur = ((int) (Math.random() * joueur.attaque) + 1);
+
+                            if (attaqueAleatoireMagiqueJoueur <= 0) attaqueAleatoireMagiqueJoueur = 1;
+                            adversaire.pv -= attaqueAleatoireMagiqueJoueur;
+
+                            if (adversaire.pv <= 0) adversaire.pv = 0;
+                            System.out.println(joueur.nom + " attaque ! \n" + "BIM ! PV de " + adversaire.nom + " = " + adversaire.pv + "\n");
+                            joueur.magie -= 5;
+                        } else {
+                            System.out.println("Le personnage n'a plus de magie ! Saisir une autre action :");
+                            joueurCommence(joueur, adversaire);
+                        }
+
                         break;
 
                     default:
@@ -71,11 +89,10 @@ public class Jeu {
                 }
 
 
+            }
 
-                }
 
-
-            if (adversaire.pv > 0 && combatFini == false) {
+            if (adversaire.pv > 0 && !combatFini) {
                 int attaqueAleatoireAttaquant = ((int) (Math.random() * adversaire.attaque) + 1) - joueur.armure;
                 if (attaqueAleatoireAttaquant <= 0) {
                     attaqueAleatoireAttaquant = 1;
@@ -91,9 +108,9 @@ public class Jeu {
 
     public static void adversaireCommence(Heros joueur, Monstre adversaire) {
         {
-            while (joueur.pv > 0 && adversaire.pv > 0 && combatFini == false) {
+            while (joueur.pv > 0 && adversaire.pv > 0 && !combatFini) {
 
-                if (adversaire.pv > 0 && combatFini == false) {
+                if (adversaire.pv > 0 && !combatFini) {
                     int attaqueAleatoireAttaquant = ((int) (Math.random() * adversaire.attaque) + 1) - joueur.armure;
                     if (attaqueAleatoireAttaquant <= 0) {
                         attaqueAleatoireAttaquant = 1;
@@ -104,28 +121,44 @@ public class Jeu {
                     System.out.println(adversaire.nom + " attaque ! \n" + "BAM !  PV de " + joueur.nom + " = " + joueur.pv);
                 }
 
-                if (joueur.pv > 0 && combatFini == false) {
+                if (joueur.pv > 0 && !combatFini) {
 
                     Scanner scan = new Scanner(System.in);
-                    System.out.println(joueur.nom + ", veux-tu attaquer (1) ou fuir (2) ?");
+                    System.out.println(joueur.nom + ", veux-tu attaquer (1), fuir (2) ou utiliser la magie (3)  ?");
                     int choix = scan.nextInt();
 
-                    switch (choix){
+                    switch (choix) {
 
-                        case 1 :
+                        case 1:
 
-                        int attaqueAleatoireJoueur = ((int) (Math.random() * joueur.attaque) + 1) - adversaire.armure;
+                            int attaqueAleatoireJoueur = ((int) (Math.random() * joueur.attaque) + 1) - adversaire.armure;
 
-                        if (attaqueAleatoireJoueur <= 0) attaqueAleatoireJoueur = 1;
-                        adversaire.pv -= attaqueAleatoireJoueur;
+                            if (attaqueAleatoireJoueur <= 0) attaqueAleatoireJoueur = 1;
+                            adversaire.pv -= attaqueAleatoireJoueur;
 
-                        if (adversaire.pv <= 0) adversaire.pv = 0;
-                        System.out.println(joueur.nom + " attaque ! \n" + "BIM ! PV de " + adversaire.nom + " = " + adversaire.pv + "\n");
+                            if (adversaire.pv <= 0) adversaire.pv = 0;
+                            System.out.println(joueur.nom + " attaque ! \n" + "BIM ! PV de " + adversaire.nom + " = " + adversaire.pv + "\n");
 
                             break;
 
-                        case 2 :
+                        case 2:
                             uneChanceSurDeuxDeFuir(joueur);
+                            break;
+
+                        case 3:
+                            if (joueur.magie >= 5){
+                                int attaqueAleatoireMagiqueJoueur = ((int) (Math.random() * joueur.attaque) + 1);
+
+                                if (attaqueAleatoireMagiqueJoueur <= 0) attaqueAleatoireMagiqueJoueur = 1;
+                                adversaire.pv -= attaqueAleatoireMagiqueJoueur;
+
+                                if (adversaire.pv <= 0) adversaire.pv = 0;
+                                System.out.println(joueur.nom + " attaque ! \n" + "BIM ! PV de " + adversaire.nom + " = " + adversaire.pv + "\n");
+                                joueur.magie -= 5;
+                            } else {
+                                System.out.println("Le personnage n'a plus de magie ! Saisir une autre action :");
+                                joueurCommence(joueur, adversaire);
+                            }
                             break;
 
                         default:
@@ -171,21 +204,22 @@ public class Jeu {
 
     }
 
-    public static void uneChanceSurDeuxDeFuir(Heros joueur){
+    public static void uneChanceSurDeuxDeFuir(Heros joueur) {
         Random r = new Random();
         int resultatTirage = r.nextInt(2);
 
         combatFini = false;
 
 
-
-        if(resultatTirage == 0){
+        if (resultatTirage == 0) {
             System.out.println("Le combat est fini !  " + joueur.nom + " a pris la fuite !\n");
             combatFini = true;
         }
-        if(resultatTirage == 1){
-            System.out.println("fuite ratée, "+ joueur.nom + " n'a fait aucun dégât ! Le combat continue..");
+        if (resultatTirage == 1) {
+            System.out.println("fuite ratée, " + joueur.nom + " n'a fait aucun dégât ! Le combat continue..");
         }
 
-    };
+    }
+
+
 }
