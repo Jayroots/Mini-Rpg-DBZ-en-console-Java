@@ -87,6 +87,68 @@ public class Jeu {
 
                         break;
 
+                    case 4 :
+                        if(joueur.potions.size() != 0){
+                            joueur.lirePotions();
+                            System.out.println(joueur.nom + ", quelle potion voulez-vous utiliser : la 1ere (1), 2eme (2), 3eme (3)..? ");
+                            int choixPotion = scan.nextInt();
+                            switch(choixPotion){
+                                case 1 :
+                                    joueur.pv += joueur.potions.getFirst().gainDePv;
+                                    joueur.magie += joueur.potions.getFirst().gainDeMana;
+                                    joueur.potions.removeFirst();
+                                    System.out.println("Le joueur a maintenant " + joueur.pv + " pv et "+ joueur.magie + " points de mana");
+                                    break;
+
+                                case 2 :
+                                    if(joueur.potions.get(1) != null){
+                                        joueur.pv += joueur.potions.get(1).gainDePv;
+                                        joueur.magie += joueur.potions.get(1).gainDeMana;
+                                        joueur.potions.remove(1);
+                                        System.out.println("Le joueur a maintenant " + joueur.pv + " pv et "+ joueur.magie + " points de mana" );
+                                    }else{
+                                        System.out.println("Le personnage n'a pas cette potion ! Saisir une autre action :");
+                                        joueurCommence(joueur, adversaire);
+                                    }
+
+                                    break;
+
+                                case 3 :
+                                    if(joueur.potions.get(2) != null){
+                                        joueur.pv += joueur.potions.get(2).gainDePv;
+                                        joueur.magie += joueur.potions.get(2).gainDeMana;
+                                        joueur.potions.remove(2);
+                                        System.out.println("Le joueur a maintenant " + joueur.pv + " pv et "+ joueur.magie + " points de mana");
+                                    }else{
+                                        System.out.println("Le personnage n'a pas cette potion ! Saisir une autre action :");
+                                        joueurCommence(joueur, adversaire);
+                                    }
+
+                                    break;
+                                case 4 :
+                                    if(joueur.potions.get(3) != null){
+                                        joueur.pv += joueur.potions.get(3).gainDePv;
+                                        joueur.magie += joueur.potions.get(3).gainDeMana;
+                                        joueur.potions.remove(3);
+                                        System.out.println("Le joueur a maintenant " + joueur.pv + " pv et "+ joueur.magie + " points de mana");
+                                    }else{
+                                        System.out.println("Le personnage n'a pas cette potion ! Saisir une autre action :");
+                                        joueurCommence(joueur, adversaire);
+                                    }
+
+                                    break;
+
+                                default:
+                                    System.out.println("saisie invalide");
+                                    joueurCommence(joueur,adversaire);
+                                    break;
+                            }
+                        }else{
+                            System.out.println("Le personnage n'a pas de potions ! Saisir une autre action :");
+                            joueurCommence(joueur, adversaire);
+                        }
+                        break;
+
                     default:
                         System.out.println("saisie invalide");
                         joueurCommence(joueur, adversaire);

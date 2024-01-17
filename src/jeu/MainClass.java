@@ -31,7 +31,7 @@ public class MainClass {
         Heros vegeta = new Heros("Vegeta", 90, 90,12,4,40, 0,1,20);
         Heros sangohan = new Heros("San Gohan", 50, 50, 8,2,60,0,1,20);
 
-        Monstre freezer = new Monstre("Freezer", 90,90,11,4,50,4);
+        Monstre freezer = new Monstre("Freezer", 90,90,11,4,10,4);
         Monstre cell = new Monstre("Cell",70,70 , 8,4,30,8);
         Monstre buu = new Monstre("Buu",80,80,7,6,70,22);
 
