@@ -8,8 +8,17 @@ public class Potions {
     public int prix ;
     public int gainDePv;
 
+    public int gainDeMana;
 
-    public Potions(int index,String nom, int prix, int gainDePv) {
+    public Potions(int index, String nom, int prix, int gainDePv, int gainDeMana) {
+        this.index = index;
+        this.nom = nom;
+        this.prix = prix;
+        this.gainDePv = gainDePv;
+        this.gainDeMana = gainDeMana;
+    }
+
+    public Potions(int index, String nom, int prix, int gainDePv) {
         this.index = index;
         this.nom = nom;
         this.prix = prix;

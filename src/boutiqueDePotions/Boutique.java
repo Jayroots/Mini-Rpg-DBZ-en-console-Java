@@ -17,7 +17,8 @@ public class Boutique {
             System.out.println(boutique.get(i).index + " :");
             System.out.println(boutique.get(i).nom);
             System.out.println(boutique.get(i).prix + " pièces d'or");
-            System.out.println("redonne "+ boutique.get(i).gainDePv + " points de vie\n");
+            System.out.println("redonne "+ boutique.get(i).gainDePv + " points de vie");
+            System.out.println("redonne "+ boutique.get(i).gainDeMana + " points de mana\n");
         }
     }
     public void ajouterPotion(Potions nouvellePotion) {

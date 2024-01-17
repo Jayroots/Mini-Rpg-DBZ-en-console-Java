@@ -12,14 +12,16 @@ public class MainClass {
     public static void main(String[] args) {
 
 
-        Potions fioleVerte = new Potions(1,"Fiole Verte",10,10);
-        Potions fioleBleue = new Potions(2,"Fiole Bleue", 20, 40);
-        Potions fioleRouge = new Potions(3,"Fiole Rouge", 50, 100 );
+        Potions fioleVerte = new Potions(1,"Fiole Verte",10,10,0);
+        Potions fioleBleue = new Potions(2,"Fiole Bleue", 20, 40,0);
+        Potions fioleRouge = new Potions(3,"Fiole Rouge", 50, 100 ,0);
+        Potions fioleViolette = new Potions(4,"Fiole Violette", 100,0,20);
 
         Boutique boutiqueDePotions = new Boutique();
         boutiqueDePotions.ajouterPotion(fioleVerte);
         boutiqueDePotions.ajouterPotion(fioleBleue);
         boutiqueDePotions.ajouterPotion(fioleRouge);
+        boutiqueDePotions.ajouterPotion(fioleViolette);
 
 
 
