@@ -50,7 +50,7 @@ public class Jeu {
             if (joueur.pv > 0 && !combatFini) {
 
                 Scanner scan = new Scanner(System.in);
-                System.out.println(joueur.nom + ", veux-tu attaquer (1), fuir (2) ou utiliser la magie (3) ?");
+                System.out.println(joueur.nom + ", veux-tu attaquer (1), fuir (2) utiliser la magie (3) ou une potion (4)?");
                 int choix = scan.nextInt();
 
 
@@ -129,7 +129,7 @@ public class Jeu {
                 if (joueur.pv > 0 && !combatFini) {
 
                     Scanner scan = new Scanner(System.in);
-                    System.out.println(joueur.nom + ", veux-tu attaquer (1), fuir (2) ou utiliser la magie (3)  ?");
+                    System.out.println(joueur.nom + ", veux-tu attaquer (1), fuir (2) utiliser la magie (3) ou une potion (4)  ?");
                     int choix = scan.nextInt();
 
                     switch (choix) {
@@ -166,7 +166,55 @@ public class Jeu {
                             }
                             break;
 
-                        default:
+                        case 4 :
+                            if(joueur.potions.size() != 0){
+                                joueur.lirePotions();
+                                System.out.println(joueur.nom + ", quelle potion voulez-vous utiliser : la 1ere (1), 2eme (2), 3eme (3)..? ");
+                                int choixPotion = scan.nextInt();
+                                switch(choixPotion){
+                                    case 1 :
+                                        joueur.pv += joueur.potions.getFirst().gainDePv;
+                                        joueur.potions.removeFirst();
+                                        System.out.println("Le joueur a maintenant " + joueur.pv + "pv");
+                                        break;
+
+                                    case 2 :
+                                        if(joueur.potions.get(1) != null){
+                                            joueur.pv += joueur.potions.get(1).gainDePv;
+                                            joueur.potions.remove(1);
+                                            System.out.println("Le joueur a maintenant " + joueur.pv + "pv");
+                                        }else{
+                                            System.out.println("Le personnage n'a pas cette potion ! Saisir une autre action :");
+                                            joueurCommence(joueur, adversaire);
+                                        }
+
+                                        break;
+
+                                    case 3 :
+                                        if(joueur.potions.get(2) != null){
+                                            joueur.pv += joueur.potions.get(2).gainDePv;
+                                            joueur.potions.remove(2);
+                                            System.out.println("Le joueur a maintenant " + joueur.pv + "pv");
+                                        }else{
+                                            System.out.println("Le personnage n'a pas cette potion ! Saisir une autre action :");
+                                            joueurCommence(joueur, adversaire);
+                                        }
+
+                                        break;
+
+                                    default:
+                                        System.out.println("saisie invalide");
+                                        joueurCommence(joueur,adversaire);
+                                        break;
+                                }
+                        }else{
+                            System.out.println("Le personnage n'a pas de potions ! Saisir une autre action :");
+                            joueurCommence(joueur, adversaire);
+                        }
+                            break;
+
+
+                            default:
                             System.out.println("saisie invalide");
                             joueurCommence(joueur, adversaire);
 
@@ -235,34 +283,38 @@ public class Jeu {
             switch(choix){
                 case 1 :
                     if(joueur.or > boutique.getBoutique().getFirst().prix){
-                        joueur.or =- boutique.getBoutique().getFirst().prix;
+                        joueur.or -= boutique.getBoutique().getFirst().prix;
                         joueur.potions.add(boutique.getBoutique().getFirst());
-                        System.out.println("La " + boutique.getBoutique().getFirst().nom + " a bien été ajoutée à votre inventaire.");
+                        System.out.println("La " + boutique.getBoutique().getFirst().nom + " a bien été ajoutée à votre inventaire."+
+                                " Votre nouveau solde de pièces est de " + joueur.or);
+
 //                    System.out.println(joueur.potions.getFirst().nom);
                     }else{
-                        System.out.println("Vous n'avez pas assez de pièces d'or.");
+                        System.out.println("Vous n'avez pas assez de pièces d'or. Votre solde est de " + joueur.or + " pièces d'or.");
                         achatPotions(joueur,adversaire,boutique);
                     }
                     break ;
                 case 2 :
                 if(joueur.or > boutique.getBoutique().get(1).prix){
-                    joueur.or =- boutique.getBoutique().get(1).prix;
+                    joueur.or -= boutique.getBoutique().get(1).prix;
                     joueur.potions.add(boutique.getBoutique().get(1));
-                    System.out.println("La " + boutique.getBoutique().get(1).nom + " a bien été ajoutée à votre inventaire.");
+                    System.out.println("La " + boutique.getBoutique().get(1).nom + " a bien été ajoutée à votre inventaire."
+                            + " Votre nouveau solde de pièces est de " + joueur.or);
                 }
                     else{
-                    System.out.println("Vous n'avez pas assez de pièces d'or.");
+                    System.out.println("Vous n'avez pas assez de pièces d'or.Votre solde est de " + joueur.or + " pièces d'or.");
                     achatPotions(joueur,adversaire,boutique);
                 }
 
                     break ;
                 case 3 :
                     if(joueur.or > boutique.getBoutique().get(2).prix){
-                    joueur.or =- boutique.getBoutique().get(2).prix;
+                    joueur.or -= boutique.getBoutique().get(2).prix;
                     joueur.potions.add(boutique.getBoutique().get(2));
-                        System.out.println("La " + boutique.getBoutique().get(2).nom + " a bien été ajoutée à votre inventaire.");
+                        System.out.println("La " + boutique.getBoutique().get(2).nom + " a bien été ajoutée à votre inventaire."
+                                + " Votre nouveau solde de pièces est de " + joueur.or);
                 } else {
-                        System.out.println("Vous n'avez pas assez de pièces d'or.");
+                        System.out.println("Vous n'avez pas assez de pièces d'or.Votre solde est de " + joueur.or + " pièces d'or.");
                         achatPotions(joueur,adversaire,boutique);
                     }
                     break;

@@ -20,7 +20,14 @@ public class Heros extends Personnage{
         this.experience = experience;
         this.or = or;
     }
-
+    public void lirePotions(){
+        for(int i = 0; i < potions.size();i++) {
+            System.out.println(potions.get(i).index + " :");
+            System.out.println(potions.get(i).nom);
+            System.out.println(potions.get(i).prix + " pièces d'or");
+            System.out.println("redonne "+ potions.get(i).gainDePv + " points de vie\n");
+        }
+    }
     public Heros(String nom, int pvMax, int pv, int attaque, int armure, int vitesse, int or, int niv, int magie) {
         super(nom, pvMax, pv, attaque, armure, vitesse);
         this.or = or;
