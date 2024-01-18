@@ -13,7 +13,10 @@ public class Heros extends Personnage{
 
     public int niv = 1;
 
-    public int magie = 20;
+    public int magieMax ;
+    public int magie = magieMax;
+
+
 
     public ArrayList<Potions> potions = new ArrayList<>();
 
@@ -23,16 +26,18 @@ public class Heros extends Personnage{
 
 
     public Heros(){};
+
     public Heros(int experience, int or) {
         this.experience = experience;
         this.or = or;
     }
     public void lirePotions(){
         for(int i = 0; i < potions.size();i++) {
-            System.out.println(potions.get(i).index + " :");
             System.out.println(potions.get(i).nom);
             System.out.println(potions.get(i).prix + " pièces d'or");
-            System.out.println("redonne "+ potions.get(i).gainDePv + " points de vie\n");
+            System.out.println("redonne "+ potions.get(i).gainDePv + " points de vie");
+            System.out.println("redonne "+ potions.get(i).gainDeMana + " points de magie\n");
+
         }
     }
 
@@ -45,10 +50,14 @@ public class Heros extends Personnage{
 
         }
     }
-    public Heros(String nom, int pvMax, int pv, int attaque, int armure, int vitesse, int or, int niv, int magie) {
+
+
+
+    public Heros(String nom, int pvMax, int pv, int attaque, int armure, int vitesse, int or, int niv, int magieMax,int magie) {
         super(nom, pvMax, pv, attaque, armure, vitesse);
         this.or = or;
         this.niv = niv;
+        this.magieMax = magieMax;
         this.magie = magie;
     }
 
@@ -78,6 +87,22 @@ public class Heros extends Personnage{
 
     public ArrayList<CoupSpecial> getSorts() {
         return coupSpeciaux;
+    }
+
+    public int getMagieMax() {
+        return magieMax;
+    }
+
+    public void setMagieMax(int magieMax) {
+        this.magieMax = magieMax;
+    }
+
+    public int getMagie() {
+        return magie;
+    }
+
+    public void setMagie(int magie) {
+        this.magie = magie;
     }
 
     public void setSorts(ArrayList<CoupSpecial> coupSpecials) {

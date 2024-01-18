@@ -10,6 +10,9 @@ public class Potions {
 
     public int gainDeMana;
 
+
+
+
     public Potions(int index, String nom, int prix, int gainDePv, int gainDeMana) {
         this.index = index;
         this.nom = nom;

@@ -13,6 +13,7 @@ public class Boutique {
                 '}';
     }
     public void lireBoutique(){
+        System.out.println("\nVoici ce que vous propose le marchand : ");
         for(int i = 0; i < boutique.size();i++) {
             System.out.println(boutique.get(i).index + " :");
             System.out.println(boutique.get(i).nom);

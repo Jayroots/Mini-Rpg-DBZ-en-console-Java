@@ -18,7 +18,7 @@ public class MainClass {
         Potions fioleVerte = new Potions(1,"Fiole Verte",10,10,0);
         Potions fioleBleue = new Potions(2,"Fiole Bleue", 20, 40,0);
         Potions fioleRouge = new Potions(3,"Fiole Rouge", 50, 100 ,0);
-        Potions fioleViolette = new Potions(4,"Fiole Violette", 100,0,20);
+        Potions fioleViolette = new Potions(4,"Fiole Violette", 100,50,50);
         Potions fioleOrange = new Potions(5, "Fiole Orange",20,0,20);
 
         Boutique boutiqueDePotions = new Boutique();
@@ -35,9 +35,9 @@ public class MainClass {
         CoupSpecial kamehamehaPereFils = new CoupSpecial("Kamehameha Père Fils",15,30);
 
 
-        Heros sangoku = new Heros("San Goku", 100,100,15,3,20,100,1,20);
-        Heros vegeta = new Heros("Vegeta", 90, 90,12,4,40, 0,1,20);
-        Heros sangohan = new Heros("San Gohan", 50, 50, 8,2,60,0,1,20);
+        Heros sangoku = new Heros("San Goku", 100,100,15,3,20,100,1,20,20);
+        Heros vegeta = new Heros("Vegeta", 90, 90,12,4,40, 0,1,20,20);
+        Heros sangohan = new Heros("San Gohan", 50, 50, 8,2,60,0,1,20,20);
 
         Monstre freezer = new Monstre("Freezer", 90,90,11,4,10,4);
         Monstre cell = new Monstre("Cell",70,70 , 8,4,30,8);
