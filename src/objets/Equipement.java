@@ -5,13 +5,15 @@ public class Equipement {
     public int bonusAttaque;
     public int bonusMagie;
     public int bonusArmure;
+    public int bonusPv;
 
 
-    public Equipement(String nom, int bonusAttaque, int bonusMagie, int bonusArmure) {
+    public Equipement(String nom, int bonusAttaque, int bonusMagie, int bonusArmure, int bonusPv) {
         this.nom = nom;
         this.bonusAttaque = bonusAttaque;
         this.bonusMagie = bonusMagie;
         this.bonusArmure = bonusArmure;
+        this.bonusPv = bonusPv;
     }
 
     public String getNom() {

@@ -63,15 +63,17 @@ public class MainClass {
         sangohan.coupSpeciaux.add(kamehamehaPereFils);
 
 
-        Equipement armureDuSoleil = new Equipement("Armure du Soleil", 5,0,0);
-        Equipement casqueDuSoleil = new Equipement("Casque du Soleil", 0,0,5);
-        Equipement amuletteDuSoleil = new Equipement("Amulette du Soleil",0,5,0);
+        Equipement armureDuSoleil = new Equipement("Armure du Soleil", 0,0,5,0);
+        Equipement lameDuSoleil = new Equipement("Lame du Soleil", 5,0,0,0);
+        Equipement casqueDuSoleil = new Equipement("Casque du Soleil", 0,0,0,5);
+        Equipement amuletteDuSoleil = new Equipement("Amulette du Soleil",0,5,0,0);
 
         sangoku.inventaireEquipements.put("armure",armureDuSoleil);
         sangoku.inventaireEquipements.put("casque",casqueDuSoleil);
         sangoku.inventaireEquipements.put("amulette",amuletteDuSoleil);
+        sangoku.inventaireEquipements.put("arme",lameDuSoleil);
 
-        System.out.println(sangoku.inventaireEquipements.get("armure").nom);
+
 
 
     Jeu.lancerPartie(sangoku,tableauDesMonstres,boutiqueDePotions);
