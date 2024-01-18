@@ -15,6 +15,9 @@ public class Jeu {
 
 
     public static void lancerPartie(Heros joueur, ArrayList tableau, Boutique boutique){
+        miseEnPlaceEquipement(joueur);
+
+
         Monstre adversaire1 = genererAdversaire(tableau);
         combattre(joueur,adversaire1,boutique);
         Monstre adversaire2 = genererAdversaire(tableau);
@@ -28,6 +31,9 @@ public class Jeu {
 
     }
 
+
+
+
     public static Monstre genererAdversaire(ArrayList<Monstre> tableau){
         Random r = new Random();
         int resultatRandom = r.nextInt(tableau.size());
@@ -40,6 +46,7 @@ public class Jeu {
 
         combatFini = false;
         String vainqueur = "";
+
 
         boutique.lireBoutique();
         System.out.println("Le combat va bientôt commencer contre " + adversaire.nom.toUpperCase() + " !");
@@ -68,6 +75,8 @@ public class Jeu {
         adversaire.pv = adversaire.pvMax;
 
     }
+
+
 
 
     public static void joueurCommence(Heros joueur, Monstre adversaire) {
@@ -430,6 +439,17 @@ public class Jeu {
 
             }
         }
+    }
+    public static void miseEnPlaceEquipement(Heros joueur){
+            if(joueur.inventaireEquipements.isEmpty()){
+                return;
+            }else {
+               joueur.attaque += joueur.inventaireEquipements.get("armure").bonusAttaque;
+                joueur.magieMax += joueur.inventaireEquipements.get("amulette").bonusMagie;
+                joueur.magie = joueur.magieMax;
+                joueur.armure += joueur.inventaireEquipements.get("casque").bonusArmure;
+                System.out.println("Attaque :" +joueur.attaque+"magie"+joueur.magie+"armure:"+joueur.armure);
+            }
     }
 
     public static void gainXpEtOr(Heros joueur, Monstre adversaire, String vainqueur) {
