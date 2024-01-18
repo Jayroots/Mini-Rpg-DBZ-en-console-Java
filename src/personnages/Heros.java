@@ -1,7 +1,7 @@
 package personnages;
 
 import boutiqueDePotions.Potions;
-import sort.Sort;
+import sort.CoupSpecial;
 
 import java.util.ArrayList;
 
@@ -17,7 +17,7 @@ public class Heros extends Personnage{
 
     public ArrayList<Potions> potions = new ArrayList<>();
 
-    public ArrayList<Sort> sorts = new ArrayList<>();
+    public ArrayList<CoupSpecial> coupSpeciaux = new ArrayList<>();
 
 
 
@@ -33,6 +33,16 @@ public class Heros extends Personnage{
             System.out.println(potions.get(i).nom);
             System.out.println(potions.get(i).prix + " pièces d'or");
             System.out.println("redonne "+ potions.get(i).gainDePv + " points de vie\n");
+        }
+    }
+
+    public void lireCoupsSpeciaux(Heros joueur){
+        for(int i = 0; i < joueur.coupSpeciaux.size();i++) {
+            System.out.println(i);
+            System.out.println(joueur.coupSpeciaux.get(i).nom);
+            System.out.println(joueur.coupSpeciaux.get(i).puissance + " d'attaque");
+            System.out.println(joueur.coupSpeciaux.get(i).coutEnMana + " de mana");
+
         }
     }
     public Heros(String nom, int pvMax, int pv, int attaque, int armure, int vitesse, int or, int niv, int magie) {
@@ -66,12 +76,12 @@ public class Heros extends Personnage{
         this.or = or;
     }
 
-    public ArrayList<Sort> getSorts() {
-        return sorts;
+    public ArrayList<CoupSpecial> getSorts() {
+        return coupSpeciaux;
     }
 
-    public void setSorts(ArrayList<Sort> sorts) {
-        this.sorts = sorts;
+    public void setSorts(ArrayList<CoupSpecial> coupSpecials) {
+        this.coupSpeciaux = coupSpecials;
     }
 
     public ArrayList<Potions> getPotions() {

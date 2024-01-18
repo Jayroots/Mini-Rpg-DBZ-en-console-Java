@@ -24,7 +24,7 @@ public class Boutique {
     public void ajouterPotion(Potions nouvellePotion) {
         boutique.add(nouvellePotion);
     }
-    public Boutique (){};
+    public Boutique (){}
     public Boutique(ArrayList<Potions> boutique) {
         this.boutique = boutique;
     }

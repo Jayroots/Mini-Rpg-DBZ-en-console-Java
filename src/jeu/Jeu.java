@@ -50,7 +50,7 @@ public class Jeu {
             if (joueur.pv > 0 && !combatFini) {
 
                 Scanner scan = new Scanner(System.in);
-                System.out.println(joueur.nom + ", veux-tu attaquer (1), fuir (2) utiliser la magie (3) ou une potion (4)?");
+                System.out.println(joueur.nom + ", veux-tu attaquer (1), fuir (2) utiliser la magie (3) une potion (4) ou un COUP SPECIAL (5) ?");
                 int choix = scan.nextInt();
 
 
@@ -81,7 +81,7 @@ public class Jeu {
                             System.out.println(joueur.nom + " attaque ! \n" + "BIM ! PV de " + adversaire.nom + " = " + adversaire.pv + "\n");
                             joueur.magie -= 5;
                         } else {
-                            System.out.println("Le personnage n'a plus de magie ! Saisir une autre action :");
+                            System.out.println("Le personnage n'a pas assez de magie (magie : "+joueur.magie+" ) ! Saisir une autre action :");
                             joueurCommence(joueur, adversaire);
                         }
 
@@ -138,6 +138,23 @@ public class Jeu {
 
                                     break;
 
+                                case 5 :
+                                    if(joueur.potions.get(4) != null){
+                                        joueur.pv += joueur.potions.get(4).gainDePv;
+                                        joueur.magie += joueur.potions.get(4).gainDeMana;
+                                        joueur.potions.remove(4);
+                                        System.out.println("Le joueur a maintenant " + joueur.pv + " pv et "+ joueur.magie + " points de mana");
+                                    }else{
+                                        System.out.println("Le personnage n'a pas cette potion ! Saisir une autre action :");
+                                        joueurCommence(joueur, adversaire);
+                                    }
+
+                                    break;
+
+
+
+
+
                                 default:
                                     System.out.println("saisie invalide");
                                     joueurCommence(joueur,adversaire);
@@ -147,6 +164,26 @@ public class Jeu {
                             System.out.println("Le personnage n'a pas de potions ! Saisir une autre action :");
                             joueurCommence(joueur, adversaire);
                         }
+                        break;
+
+                    case 5:
+                        joueur.lireCoupsSpeciaux(joueur);
+
+                        System.out.println("Veux-tu utiliser le 1er coup special (0) ou le 2e (1) ?");
+                        int choixCoup = scan.nextInt();
+
+                        if (joueur.magie >= joueur.coupSpeciaux.get(choixCoup).coutEnMana){
+
+                            adversaire.pv -= joueur.coupSpeciaux.get(choixCoup).puissance ;
+
+                            if (adversaire.pv <= 0) adversaire.pv = 0;
+                            System.out.println(joueur.nom.toUpperCase() + " attaque avec son ".toUpperCase() + joueur.coupSpeciaux.get(choixCoup).nom.toUpperCase()   +"! \n" + "BIM ! PV de " + adversaire.nom + " = " + adversaire.pv + "\n");
+                            joueur.magie -= joueur.coupSpeciaux.get(choixCoup).coutEnMana;
+                        } else {
+                            System.out.println("Le personnage n'a pas assez de magie ! Saisir une autre action :");
+                            joueurCommence(joueur, adversaire);
+                        }
+
                         break;
 
                     default:
@@ -279,6 +316,19 @@ public class Jeu {
 
                                         break;
 
+                                    case 5 :
+                                        if(joueur.potions.get(4) != null){
+                                            joueur.pv += joueur.potions.get(4).gainDePv;
+                                            joueur.magie += joueur.potions.get(4).gainDeMana;
+                                            joueur.potions.remove(4);
+                                            System.out.println("Le joueur a maintenant " + joueur.pv + " pv et "+ joueur.magie + " points de mana");
+                                        }else{
+                                            System.out.println("Le personnage n'a pas cette potion ! Saisir une autre action :");
+                                            joueurCommence(joueur, adversaire);
+                                        }
+
+                                        break;
+
                                     default:
                                         System.out.println("saisie invalide");
                                         joueurCommence(joueur,adversaire);
@@ -290,6 +340,25 @@ public class Jeu {
                         }
                             break;
 
+                        case 5:
+                            joueur.lireCoupsSpeciaux(joueur);
+
+                            System.out.println("Veux-tu utiliser le 1er coup special (0) ou le 2e (1) ?");
+                            int choixCoup = scan.nextInt();
+
+                            if (joueur.magie >= joueur.coupSpeciaux.get(choixCoup).coutEnMana){
+
+                                adversaire.pv -= joueur.coupSpeciaux.get(choixCoup).puissance ;
+
+                                if (adversaire.pv <= 0) adversaire.pv = 0;
+                                System.out.println(joueur.nom.toUpperCase() + " attaque avec son ".toUpperCase() + joueur.coupSpeciaux.get(choixCoup).nom.toUpperCase()   +"! \n" + "BIM ! PV de " + adversaire.nom + " = " + adversaire.pv + "\n");
+                                joueur.magie -= joueur.coupSpeciaux.get(choixCoup).coutEnMana;
+                            } else {
+                                System.out.println("Le personnage n'a pas assez de magie ! Saisir une autre action :");
+                                joueurCommence(joueur, adversaire);
+                            }
+
+                            break;
 
                             default:
                             System.out.println("saisie invalide");
@@ -354,7 +423,8 @@ public class Jeu {
         public static void achatPotions(Heros joueur,Monstre adversaire,Boutique boutique){
 
             Scanner scan = new Scanner(System.in);
-            System.out.println("Le combat va bientôt commencer contre " + adversaire.nom.toUpperCase()+" ! Veux tu acheter une potion parmi la liste ci-dessus : tape (1), (2), (3), (4) ou aucune (5) ?");
+            System.out.println("Le combat va bientôt commencer contre " + adversaire.nom.toUpperCase()+
+                    " ! Veux tu acheter une potion parmi la liste ci-dessus : tape (1), (2), (3), (4), (5) ou aucune (6) ?");
             int choix = scan.nextInt();
 
             switch(choix){
@@ -406,7 +476,21 @@ public class Jeu {
                         achatPotions(joueur,adversaire,boutique);
                     }
                     break;
+
                 case 5 :
+                    if(joueur.or >= boutique.getBoutique().get(4).prix){
+                        joueur.or -= boutique.getBoutique().get(4).prix;
+                        joueur.potions.add(boutique.getBoutique().get(4));
+                        System.out.println("La " + boutique.getBoutique().get(4).nom + " a bien été ajoutée à votre inventaire."
+                                + " Votre nouveau solde de pièces est de " + joueur.or);
+                    } else {
+                        System.out.println("Vous n'avez pas assez de pièces d'or.Votre solde est de " + joueur.or + " pièces d'or.");
+                        achatPotions(joueur,adversaire,boutique);
+                    }
+                    break;
+
+
+                case 6 :
                     System.out.println("C'est noté! Nous espérons vous revoir bientôt dans notre boutique :) ");
                     break;
                 default :

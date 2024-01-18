@@ -1,6 +1,8 @@
 package sort;
 
-public class Sort {
+import personnages.Heros;
+
+public class CoupSpecial {
 
     public String nom;
 
@@ -9,7 +11,9 @@ public class Sort {
     public int puissance;
 
 
-    public Sort(String nom, int coutEnMana, int puissance) {
+
+
+    public CoupSpecial(String nom, int coutEnMana, int puissance) {
         this.nom = nom;
         this.coutEnMana = coutEnMana;
         this.puissance = puissance;
