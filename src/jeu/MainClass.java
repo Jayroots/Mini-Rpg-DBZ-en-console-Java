@@ -6,6 +6,8 @@ import personnages.Heros;
 import personnages.Monstre;
 import sort.CoupSpecial;
 
+import java.util.ArrayList;
+
 public class MainClass {
 
 
@@ -41,6 +43,11 @@ public class MainClass {
         Monstre cell = new Monstre("Cell",70,70 , 8,4,30,8);
         Monstre buu = new Monstre("Buu",80,80,7,6,70,22);
 
+        ArrayList<Monstre> tableauDesMonstres = new ArrayList<>();
+        tableauDesMonstres.add(freezer);
+        tableauDesMonstres.add(cell);
+        tableauDesMonstres.add(buu);
+
         sangoku.coupSpeciaux.add(kamehameha);
         sangoku.coupSpeciaux.add(genkidama);
         vegeta.coupSpeciaux.add(canonGarric);
@@ -48,17 +55,7 @@ public class MainClass {
         sangohan.coupSpeciaux.add(kamehameha);
         sangohan.coupSpeciaux.add(kamehamehaPereFils);
 
-
-
-
-
-
-
-
-    Jeu.combattre(sangoku,freezer,boutiqueDePotions );
-    Jeu.combattre(sangoku,cell,boutiqueDePotions);
-    Jeu.combattre(sangoku,buu,boutiqueDePotions);
-
+    Jeu.lancerPartie(sangoku,tableauDesMonstres,boutiqueDePotions);
 
 
 

@@ -4,6 +4,7 @@ import boutiqueDePotions.Boutique;
 import personnages.Monstre;
 import personnages.Heros;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -12,6 +13,20 @@ public class Jeu {
 
     static boolean combatFini = false;
 
+
+    public static void lancerPartie(Heros joueur, ArrayList tableau, Boutique boutique){
+        Monstre adversaire = genererAdversaire(tableau);
+        combattre(joueur,adversaire,boutique);
+    }
+
+    public static Monstre genererAdversaire(ArrayList<Monstre> tableau){
+        Random r = new Random();
+        int resultatRandom = r.nextInt(tableau.size());
+
+
+        return tableau.get(resultatRandom);
+
+    }
     public static void combattre(Heros joueur, Monstre adversaire, Boutique boutique) {
 
         combatFini = false;
