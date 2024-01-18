@@ -1,4 +1,4 @@
-package boutiqueDePotions;
+package objets;
 
 import java.util.ArrayList;
 

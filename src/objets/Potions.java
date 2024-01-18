@@ -1,4 +1,4 @@
-package boutiqueDePotions;
+package objets;
 
 public class Potions {
 

@@ -1,6 +1,6 @@
 package jeu;
 
-import boutiqueDePotions.Boutique;
+import objets.Boutique;
 import personnages.Monstre;
 import personnages.Heros;
 

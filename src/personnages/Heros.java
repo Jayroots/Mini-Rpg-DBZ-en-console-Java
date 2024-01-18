@@ -1,9 +1,11 @@
 package personnages;
 
-import boutiqueDePotions.Potions;
+import objets.Equipement;
+import objets.Potions;
 import sort.CoupSpecial;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Heros extends Personnage{
 
@@ -22,6 +24,7 @@ public class Heros extends Personnage{
 
     public ArrayList<CoupSpecial> coupSpeciaux = new ArrayList<>();
 
+    public HashMap<String, Equipement> inventaireEquipements = new HashMap<>();
 
 
 
@@ -61,28 +64,13 @@ public class Heros extends Personnage{
         this.magie = magie;
     }
 
-    public Heros(String nom, int pvMax, int pv, int attaque, int armure, int vitesse, int or, int niv) {
-        super(nom, pvMax, pv, attaque, armure, vitesse);
-        this.or = or;
-        this.niv = niv;
+
+    public HashMap<String, Equipement> getInventaireEquipements() {
+        return inventaireEquipements;
     }
 
-    public Heros(String nom, int pvMax, int pv, int attaque, int armure, int experience, int or) {
-        super(nom, pvMax, pv, attaque, armure);
-        this.experience = experience;
-        this.or = or;
-    }
-
-    public Heros(String nom, int pvMax, int attaque, int experience, int or) {
-        super(nom, pvMax, attaque);
-        this.experience = experience;
-        this.or = or;
-    }
-
-    public Heros(String nom, int pvMax, int pv, int attaque, int experience, int or) {
-        super(nom, pvMax, pv, attaque);
-        this.experience = experience;
-        this.or = or;
+    public void setInventaireEquipements(HashMap<String, Equipement> inventaireEquipements) {
+        this.inventaireEquipements = inventaireEquipements;
     }
 
     public ArrayList<CoupSpecial> getSorts() {
