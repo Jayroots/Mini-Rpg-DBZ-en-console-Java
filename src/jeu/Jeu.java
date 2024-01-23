@@ -68,6 +68,7 @@ public class Jeu {
             gainXpEtOr(joueur, adversaire, vainqueur);
             gainNiveau(joueur);
             infoGainDXp(joueur);
+            chanceDeGagnerEquipement(joueur);
         }
         joueur.pv = joueur.pvMax;
         joueur.magie = joueur.magieMax;
@@ -81,6 +82,8 @@ public class Jeu {
 
 
             if (joueur.pv > 0 && !combatFini) {
+
+               try{
 
                 Scanner scan = new Scanner(System.in);
                 System.out.println(joueur.nom + ", veux-tu attaquer (1), fuir (2) utiliser la magie (3) une potion (4) ou un COUP SPECIAL (5) ?");
@@ -267,7 +270,10 @@ public class Jeu {
                         joueurCommence(joueur, adversaire);
 
                 }
-
+               } catch(Exception e){
+                   System.out.println("Erreur de saisie : " + e.getMessage());
+                   joueurCommence(joueur, adversaire);
+               }
 
             }
 
@@ -290,6 +296,9 @@ public class Jeu {
         {
             while (joueur.pv > 0 && adversaire.pv > 0 && !combatFini) {
 
+                try{
+
+
                 if (adversaire.pv > 0 && !combatFini) {
                     int attaqueAleatoireAttaquant = ((int) (Math.random() * adversaire.attaque) + 1) - joueur.armure;
                     if (attaqueAleatoireAttaquant <= 0) {
@@ -302,6 +311,7 @@ public class Jeu {
                 }
 
                 if (joueur.pv > 0 && !combatFini) {
+
 
                     Scanner scan = new Scanner(System.in);
                     System.out.println(joueur.nom + ", veux-tu attaquer (1), fuir (2) utiliser la magie (3) ou une potion (4) ou un COUP SPECIAL (5)  ?");
@@ -490,7 +500,10 @@ public class Jeu {
                     }
 
                 }
-
+   } catch(Exception e){
+           System.out.println("Erreur de saisie :" + e.getMessage());
+                    joueurCommence(joueur, adversaire);
+            }
             }
         }
     }
@@ -595,86 +608,111 @@ public class Jeu {
 
     public static void achatPotions(Heros joueur, Monstre adversaire, Boutique boutique) {
 
-        Scanner scan = new Scanner(System.in);
-        System.out.println(
-                "Veux tu acheter une potion parmi la liste ci-dessus ? Votre solde est de " + joueur.or + " pièces d'or." +
-                        "\nTape (1), (2), (3), (4), (5) ou aucune (6) ?");
-        int choix = scan.nextInt();
 
-        switch (choix) {
-            case 1:
-                if (joueur.or >= boutique.getBoutique().getFirst().prix) {
-                    joueur.or -= boutique.getBoutique().getFirst().prix;
-                    joueur.potions.add(boutique.getBoutique().getFirst());
-                    System.out.println("La " + boutique.getBoutique().getFirst().nom + " a bien été ajoutée à votre inventaire." +
-                            " Votre nouveau solde de pièces est de " + joueur.or + ".");
-                    achatPotions(joueur, adversaire, boutique);
+        try {
+            Scanner scan = new Scanner(System.in);
+            System.out.println(
+                    "Veux tu acheter une potion parmi la liste ci-dessus ? Votre solde est de " + joueur.or + " pièces d'or." +
+                            "\nTape (1), (2), (3), (4), (5) ou aucune (6) ?");
+            int choix = scan.nextInt();
 
-                } else {
-                    System.out.println("Vous n'avez pas assez de pièces d'or. Votre solde est de " + joueur.or + " pièces d'or.");
-                    achatPotions(joueur, adversaire, boutique);
-                }
-                break;
-            case 2:
-                if (joueur.or >= boutique.getBoutique().get(1).prix) {
-                    joueur.or -= boutique.getBoutique().get(1).prix;
-                    joueur.potions.add(boutique.getBoutique().get(1));
-                    System.out.println("La " + boutique.getBoutique().get(1).nom + " a bien été ajoutée à votre inventaire."
-                            + " Votre nouveau solde de pièces est de " + joueur.or + ".");
-                    achatPotions(joueur, adversaire, boutique);
-                } else {
-                    System.out.println("Vous n'avez pas assez de pièces d'or.Votre solde est de " + joueur.or + " pièces d'or.");
-                    achatPotions(joueur, adversaire, boutique);
-                }
+            switch (choix) {
+                case 1:
+                    if (joueur.or >= boutique.getBoutique().getFirst().prix) {
+                        joueur.or -= boutique.getBoutique().getFirst().prix;
+                        joueur.potions.add(boutique.getBoutique().getFirst());
+                        System.out.println("La " + boutique.getBoutique().getFirst().nom + " a bien été ajoutée à votre inventaire." +
+                                " Votre nouveau solde de pièces est de " + joueur.or + ".");
+                        achatPotions(joueur, adversaire, boutique);
 
-                break;
-            case 3:
-                if (joueur.or >= boutique.getBoutique().get(2).prix) {
-                    joueur.or -= boutique.getBoutique().get(2).prix;
-                    joueur.potions.add(boutique.getBoutique().get(2));
-                    System.out.println("La " + boutique.getBoutique().get(2).nom + " a bien été ajoutée à votre inventaire."
-                            + " Votre nouveau solde de pièces est de " + joueur.or + ".");
-                    achatPotions(joueur, adversaire, boutique);
-                } else {
-                    System.out.println("Vous n'avez pas assez de pièces d'or.Votre solde est de " + joueur.or + " pièces d'or.");
-                    achatPotions(joueur, adversaire, boutique);
-                }
-                break;
-            case 4:
-                if (joueur.or >= boutique.getBoutique().get(3).prix) {
-                    joueur.or -= boutique.getBoutique().get(3).prix;
-                    joueur.potions.add(boutique.getBoutique().get(3));
-                    System.out.println("La " + boutique.getBoutique().get(3).nom + " a bien été ajoutée à votre inventaire."
-                            + " Votre nouveau solde de pièces est de " + joueur.or + ".");
-                    achatPotions(joueur, adversaire, boutique);
-                } else {
-                    System.out.println("Vous n'avez pas assez de pièces d'or.Votre solde est de " + joueur.or + " pièces d'or.");
-                    achatPotions(joueur, adversaire, boutique);
-                }
-                break;
+                    } else {
+                        System.out.println("Vous n'avez pas assez de pièces d'or. Votre solde est de " + joueur.or + " pièces d'or.");
+                        achatPotions(joueur, adversaire, boutique);
+                    }
+                    break;
+                case 2:
+                    if (joueur.or >= boutique.getBoutique().get(1).prix) {
+                        joueur.or -= boutique.getBoutique().get(1).prix;
+                        joueur.potions.add(boutique.getBoutique().get(1));
+                        System.out.println("La " + boutique.getBoutique().get(1).nom + " a bien été ajoutée à votre inventaire."
+                                + " Votre nouveau solde de pièces est de " + joueur.or + ".");
+                        achatPotions(joueur, adversaire, boutique);
+                    } else {
+                        System.out.println("Vous n'avez pas assez de pièces d'or.Votre solde est de " + joueur.or + " pièces d'or.");
+                        achatPotions(joueur, adversaire, boutique);
+                    }
 
-            case 5:
-                if (joueur.or >= boutique.getBoutique().get(4).prix) {
-                    joueur.or -= boutique.getBoutique().get(4).prix;
-                    joueur.potions.add(boutique.getBoutique().get(4));
-                    System.out.println("La " + boutique.getBoutique().get(4).nom + " a bien été ajoutée à votre inventaire."
-                            + " Votre nouveau solde de pièces est de " + joueur.or + ".");
+                    break;
+                case 3:
+                    if (joueur.or >= boutique.getBoutique().get(2).prix) {
+                        joueur.or -= boutique.getBoutique().get(2).prix;
+                        joueur.potions.add(boutique.getBoutique().get(2));
+                        System.out.println("La " + boutique.getBoutique().get(2).nom + " a bien été ajoutée à votre inventaire."
+                                + " Votre nouveau solde de pièces est de " + joueur.or + ".");
+                        achatPotions(joueur, adversaire, boutique);
+                    } else {
+                        System.out.println("Vous n'avez pas assez de pièces d'or.Votre solde est de " + joueur.or + " pièces d'or.");
+                        achatPotions(joueur, adversaire, boutique);
+                    }
+                    break;
+                case 4:
+                    if (joueur.or >= boutique.getBoutique().get(3).prix) {
+                        joueur.or -= boutique.getBoutique().get(3).prix;
+                        joueur.potions.add(boutique.getBoutique().get(3));
+                        System.out.println("La " + boutique.getBoutique().get(3).nom + " a bien été ajoutée à votre inventaire."
+                                + " Votre nouveau solde de pièces est de " + joueur.or + ".");
+                        achatPotions(joueur, adversaire, boutique);
+                    } else {
+                        System.out.println("Vous n'avez pas assez de pièces d'or.Votre solde est de " + joueur.or + " pièces d'or.");
+                        achatPotions(joueur, adversaire, boutique);
+                    }
+                    break;
+
+                case 5:
+                    if (joueur.or >= boutique.getBoutique().get(4).prix) {
+                        joueur.or -= boutique.getBoutique().get(4).prix;
+                        joueur.potions.add(boutique.getBoutique().get(4));
+                        System.out.println("La " + boutique.getBoutique().get(4).nom + " a bien été ajoutée à votre inventaire."
+                                + " Votre nouveau solde de pièces est de " + joueur.or + ".");
+                        achatPotions(joueur, adversaire, boutique);
+                    } else {
+                        System.out.println("Vous n'avez pas assez de pièces d'or.Votre solde est de " + joueur.or + " pièces d'or.");
+                        achatPotions(joueur, adversaire, boutique);
+                    }
+                    break;
+
+
+                case 6:
+                    System.out.println("C'est noté! Nous espérons vous revoir bientôt dans notre boutique :) ");
+                    break;
+
+                default:
+                    System.out.println("saisie invalide");
                     achatPotions(joueur, adversaire, boutique);
-                } else {
-                    System.out.println("Vous n'avez pas assez de pièces d'or.Votre solde est de " + joueur.or + " pièces d'or.");
-                    achatPotions(joueur, adversaire, boutique);
-                }
-                break;
+                    break;
+            }
+        }catch(Exception e){
+            System.out.println("erreur de saisie : "+e.getMessage());
+            achatPotions(joueur, adversaire, boutique);
+        }
+    }
+
+    public static void chanceDeGagnerEquipement(Heros joueur){
+        Random r = new Random();
+        int resultatTirage = r.nextInt(101);
 
 
-            case 6:
-                System.out.println("C'est noté! Nous espérons vous revoir bientôt dans notre boutique :) ");
-                break;
+        if (resultatTirage <= 50 ) {
+            System.out.println("Dommage ! Le héros n'a rien gagné .. :( \n");
 
-            default:
-                System.out.println("saisie invalide");
-                achatPotions(joueur, adversaire, boutique);
-                break;
+        } else if (resultatTirage <= 65) {
+            System.out.println("Le héros a gagné une nouvelle armure !");
+        } else if (resultatTirage <= 80) {
+            System.out.println("Le héros a gagné une nouvelle amulette !");
+        }else if (resultatTirage <= 95) {
+            System.out.println("Le héros a gagné un nouveau casque !");
+        }else {
+            System.out.println("Le héros a gagné une nouvelle ARME LEGENDAIRE!");
         }
     }
 
