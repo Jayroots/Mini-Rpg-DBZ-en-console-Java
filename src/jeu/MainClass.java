@@ -8,7 +8,7 @@ import personnages.Monstre;
 import sort.CoupSpecial;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+
 
 public class MainClass {
 
@@ -31,15 +31,22 @@ public class MainClass {
         boutiqueDePotions.ajouterPotion(fioleOrange);
 
 
-        Heros sangoku = new Heros("San Goku", 100,100,15,3,20,100,1,20,20);
-        Heros vegeta = new Heros("Vegeta", 90, 90,12,4,40, 0,1,20,20);
-        Heros sangohan = new Heros("San Gohan", 50, 50, 8,2,60,0,1,20,20);
+        Heros sangoku = new Heros("San Goku", 150,150,20,3,20,0,1,20,20);
+        Heros vegeta = new Heros("Vegeta", 130, 130,18,3,40, 0,1,20,20);
+        Heros sangohan = new Heros("San Gohan", 100, 100, 13,2,60,0,1,20,20);
 
-        Monstre freezer = new Monstre("Freezer", 90,90,11,4,10,4);
-        Monstre cell = new Monstre("Cell",70,70 , 8,4,30,8);
-        Monstre buu = new Monstre("Buu",80,80,7,6,70,22);
-        Monstre broly = new Monstre("Broly", 200,200,15,6,2,28);
-        Monstre beerus = new Monstre("Beerus",150,150,20,10,70,40);
+        ArrayList<Heros> tableauDesHeros = new ArrayList<>();
+        tableauDesHeros.add(sangoku);
+        tableauDesHeros.add(vegeta);
+        tableauDesHeros.add(sangohan);
+
+
+
+        Monstre freezer = new Monstre("Freezer", 90,90,12,4,10,4);
+        Monstre cell = new Monstre("Cell",100,100 , 14,4,30,8);
+        Monstre buu = new Monstre("Buu",130,130,15,6,70,22);
+        Monstre broly = new Monstre("Broly", 200,200,20,6,2,28);
+        Monstre beerus = new Monstre("Beerus",150,150,24,10,70,40);
 
 
         ArrayList<Monstre> tableauDesMonstres = new ArrayList<>();
@@ -63,7 +70,7 @@ public class MainClass {
         sangohan.coupSpeciaux.add(kamehamehaPereFils);
 
 
-        Equipement armureDuSoleil = new Equipement("Armure du Soleil", 0,0,5,0);
+        Equipement armureDuSoleil = new Equipement("Armure du Soleil", 0,0,2,0);
         Equipement lameDuSoleil = new Equipement("Lame du Soleil", 5,0,0,0);
         Equipement casqueDuSoleil = new Equipement("Casque du Soleil", 0,0,0,5);
         Equipement amuletteDuSoleil = new Equipement("Amulette du Soleil",0,5,0,0);
@@ -76,7 +83,7 @@ public class MainClass {
 
 
 
-    Jeu.lancerPartie(sangoku,tableauDesMonstres,boutiqueDePotions);
+    Jeu.lancerPartie(tableauDesHeros,tableauDesMonstres,boutiqueDePotions);
 
 
 

@@ -16,6 +16,17 @@ public class Equipement {
         this.bonusPv = bonusPv;
     }
 
+    @Override
+    public String toString() {
+        return "Equipement{" +
+                "nom='" + nom + '\'' +
+                ", bonusAttaque=" + bonusAttaque +
+                ", bonusMagie=" + bonusMagie +
+                ", bonusArmure=" + bonusArmure +
+                ", bonusPv=" + bonusPv +
+                '}';
+    }
+
     public String getNom() {
         return nom;
     }

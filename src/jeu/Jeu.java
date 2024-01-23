@@ -1,6 +1,7 @@
 package jeu;
 
 import objets.Boutique;
+import objets.Equipement;
 import personnages.Monstre;
 import personnages.Heros;
 
@@ -14,23 +15,49 @@ public class Jeu {
     static boolean combatFini = false;
 
 
-    public static void lancerPartie(Heros joueur, ArrayList tableau, Boutique boutique) {
+    public static void lancerPartie(ArrayList tableauDesHeros, ArrayList tableauDesMonstres, Boutique boutique) {
+
+        Heros joueur = choixHeros(tableauDesHeros);
 
         miseEnPlaceEquipement(joueur);
 
-        Monstre adversaire1 = genererAdversaire(tableau);
+        Monstre adversaire1 = genererAdversaire(tableauDesMonstres);
         combattre(joueur, adversaire1, boutique);
-        Monstre adversaire2 = genererAdversaire(tableau);
+        Monstre adversaire2 = genererAdversaire(tableauDesMonstres);
         combattre(joueur, adversaire2, boutique);
-        Monstre adversaire3 = genererAdversaire(tableau);
+        Monstre adversaire3 = genererAdversaire(tableauDesMonstres);
         combattre(joueur, adversaire3, boutique);
-        Monstre adversaire4 = genererAdversaire(tableau);
+        Monstre adversaire4 = genererAdversaire(tableauDesMonstres);
         combattre(joueur, adversaire4, boutique);
-        Monstre adversaire5 = genererAdversaire(tableau);
+        Monstre adversaire5 = genererAdversaire(tableauDesMonstres);
         combattre(joueur, adversaire5, boutique);
 
     }
 
+    public static Heros choixHeros(ArrayList<Heros> tableauDesHeros) {
+
+        int choixJoueur =0 ;
+        try {
+
+
+            System.out.println("Voici les héros disponibles :");
+            for (int i = 0; i < tableauDesHeros.size(); i++) {
+                System.out.println(i + " : " + tableauDesHeros.get(i).nom);
+            }
+            System.out.println("Quel héros voulez vous choisir ? ");
+            Scanner scan = new Scanner(System.in);
+            choixJoueur = scan.nextInt();
+
+            System.out.println("Cest noté ! Vous avez choisi : " + tableauDesHeros.get(choixJoueur).nom.toUpperCase());
+            return tableauDesHeros.get(choixJoueur);
+
+        } catch (Exception e) {
+            System.out.println("Erreur de saisie : " + e.getMessage());
+            choixHeros(tableauDesHeros);
+
+        }
+        return tableauDesHeros.get(choixJoueur);
+    }
 
     public static Monstre genererAdversaire(ArrayList<Monstre> tableau) {
         Random r = new Random();
@@ -703,17 +730,41 @@ public class Jeu {
 
 
         if (resultatTirage <= 50 ) {
-            System.out.println("Dommage ! Le héros n'a rien gagné .. :( \n");
+            System.out.println("Dommage ! Le héros n'a gagné aucun équipement .. :( \n");
 
         } else if (resultatTirage <= 65) {
-            System.out.println("Le héros a gagné une nouvelle armure !");
+            Equipement armureLunaire = new Equipement("Armure Lunaire", 0,0,5,0);
+            System.out.println("Le héros a gagné une nouvelle armure ! L' "+ armureLunaire.nom+ " !!!");
+            joueur.armure -= joueur.inventaireEquipements.get("armure").bonusArmure;
+            joueur.inventaireEquipements.put("armure",armureLunaire );
+            joueur.armure += joueur.inventaireEquipements.get("armure").bonusArmure;
+
+
         } else if (resultatTirage <= 80) {
-            System.out.println("Le héros a gagné une nouvelle amulette !");
+            Equipement amuletteLunaire = new Equipement("Amulette Lunaire",0,50,0,0);
+            System.out.println("Le héros a gagné une nouvelle amulette ! L' "+ amuletteLunaire.nom+ " !!!");
+            joueur.magieMax -= joueur.inventaireEquipements.get("amulette").bonusMagie;
+            joueur.inventaireEquipements.put("amulette",amuletteLunaire );
+            joueur.magieMax += joueur.inventaireEquipements.get("amulette").bonusMagie;
+
         }else if (resultatTirage <= 95) {
-            System.out.println("Le héros a gagné un nouveau casque !");
+            Equipement casqueLunaire = new Equipement("Casque Lunaire", 0,0,0,100);
+            System.out.println("Le héros a gagné un nouveau casque ! Le "+ casqueLunaire.nom+ " !!!");
+            joueur.pvMax -= joueur.inventaireEquipements.get("casque").bonusPv;
+            joueur.inventaireEquipements.put("casque",casqueLunaire );
+            joueur.pvMax += joueur.inventaireEquipements.get("casque").bonusPv;
+
         }else {
-            System.out.println("Le héros a gagné une nouvelle ARME LEGENDAIRE!");
+            Equipement lameLunaire = new Equipement("Lame Lunaire", 30,0,0,0);
+            System.out.println("Le héros a gagné une nouvelle ARME LEGENDAIRE! La "+ lameLunaire.nom+ " !!!");
+            joueur.attaque -= joueur.inventaireEquipements.get("arme").bonusAttaque;
+            joueur.inventaireEquipements.put("arme",lameLunaire );
+            joueur.attaque += joueur.inventaireEquipements.get("arme").bonusAttaque;
+
         }
+
+        System.out.println("\nNouvelles statistiques du Héros :\n"+
+                "Attaque :" +joueur.attaque+", Magie :"+joueur.magie+", Armure: "+joueur.armure+", Pv : "+joueur.pv);
     }
 
 }

@@ -6,6 +6,7 @@ import sort.CoupSpecial;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Heros extends Personnage{
 
@@ -27,7 +28,9 @@ public class Heros extends Personnage{
     public HashMap<String, Equipement> inventaireEquipements = new HashMap<>();
 
 
+public void afficherHeros(List<Heros> tableauDesHeros){
 
+}
     public Heros(){};
 
     public Heros(int experience, int or) {
@@ -64,6 +67,19 @@ public class Heros extends Personnage{
         this.magie = magie;
     }
 
+    @Override
+    public String toString() {
+        return "Heros{" +
+                "experience=" + experience +
+                ", or=" + or +
+                ", niv=" + niv +
+                ", magieMax=" + magieMax +
+                ", magie=" + magie +
+                ", potions=" + potions +
+                ", coupSpeciaux=" + coupSpeciaux +
+                ", inventaireEquipements=" + inventaireEquipements +
+                '}';
+    }
 
     public HashMap<String, Equipement> getInventaireEquipements() {
         return inventaireEquipements;
