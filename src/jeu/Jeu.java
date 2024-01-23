@@ -40,9 +40,16 @@ public class Jeu {
         try {
 
 
-            System.out.println("Voici les héros disponibles :");
+            System.out.println("\nVoici les héros disponibles :\n");
             for (int i = 0; i < tableauDesHeros.size(); i++) {
-                System.out.println(i + " : " + tableauDesHeros.get(i).nom);
+                System.out.println("Choix "+i + " => " + tableauDesHeros.get(i).nom.toUpperCase());
+                System.out.println("Attaque : "+tableauDesHeros.get(i).attaque);
+                System.out.println("Magie : "+tableauDesHeros.get(i).magie);
+                System.out.println("PV : "+tableauDesHeros.get(i).pv);
+                System.out.println("Armure : "+tableauDesHeros.get(i).armure+"\n");
+
+
+
             }
             System.out.println("Quel héros voulez vous choisir ? ");
             Scanner scan = new Scanner(System.in);

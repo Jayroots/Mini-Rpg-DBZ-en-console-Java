@@ -80,10 +80,19 @@ public class MainClass {
         sangoku.inventaireEquipements.put("amulette",amuletteDuSoleil);
         sangoku.inventaireEquipements.put("arme",lameDuSoleil);
 
+        sangohan.inventaireEquipements.put("armure",armureDuSoleil);
+        sangohan.inventaireEquipements.put("casque",casqueDuSoleil);
+        sangohan.inventaireEquipements.put("amulette",amuletteDuSoleil);
+        sangohan.inventaireEquipements.put("arme",lameDuSoleil);
+
+        vegeta.inventaireEquipements.put("armure",armureDuSoleil);
+        vegeta.inventaireEquipements.put("casque",casqueDuSoleil);
+        vegeta.inventaireEquipements.put("amulette",amuletteDuSoleil);
+        vegeta.inventaireEquipements.put("arme",lameDuSoleil);
 
 
 
-    Jeu.lancerPartie(tableauDesHeros,tableauDesMonstres,boutiqueDePotions);
+        Jeu.lancerPartie(tableauDesHeros,tableauDesMonstres,boutiqueDePotions);
 
 
 
