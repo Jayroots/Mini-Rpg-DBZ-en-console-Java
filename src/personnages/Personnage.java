@@ -2,8 +2,8 @@ package personnages;
 
 public abstract class Personnage {
     protected String nom;
-    public int pvMax;
-    public int pv = pvMax;
+    protected int pvMax;
+    protected int pv = pvMax;
     public int attaque;
     public int armure;
 
