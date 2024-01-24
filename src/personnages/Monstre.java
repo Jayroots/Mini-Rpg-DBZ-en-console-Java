@@ -1,7 +1,7 @@
 package personnages;
 
 public class Monstre extends Personnage{
-    public int niv ;
+    protected int niv ;
 
 
 

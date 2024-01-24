@@ -318,13 +318,13 @@ public class Jeu {
                             System.out.println("Vous avez annulé l'utilisation de coup spécial");
                             joueurCommence(joueur,adversaire);
                         }
-                        if (joueur.magie >= joueur.coupSpeciaux.get(choixCoup).coutEnMana) {
+                        if (joueur.magie >= joueur.coupSpeciaux.get(choixCoup).getCoutEnMana()) {
 
-                            adversaire.pv -= joueur.coupSpeciaux.get(choixCoup).puissance;
+                            adversaire.pv -= joueur.coupSpeciaux.get(choixCoup).getPuissance();
 
                             if (adversaire.pv <= 0) adversaire.pv = 0;
-                            System.out.println(joueur.getNom().toUpperCase() + " attaque avec son ".toUpperCase() + joueur.coupSpeciaux.get(choixCoup).nom.toUpperCase() + "! \n" + "BIM ! PV de " + adversaire.getNom() + " = " + adversaire.pv + "\n");
-                            joueur.magie -= joueur.coupSpeciaux.get(choixCoup).coutEnMana;
+                            System.out.println(joueur.getNom().toUpperCase() + " attaque avec son ".toUpperCase() + joueur.coupSpeciaux.get(choixCoup).getNom().toUpperCase() + "! \n" + "BIM ! PV de " + adversaire.getNom() + " = " + adversaire.pv + "\n");
+                            joueur.magie -= joueur.coupSpeciaux.get(choixCoup).getCoutEnMana();
                         } else {
                             System.out.println("Le personnage n'a pas assez de magie (magie : " + joueur.magie + " ) ! Saisir une autre action :");
                             joueurCommence(joueur, adversaire);
@@ -556,13 +556,13 @@ public class Jeu {
                                 joueurCommence(joueur,adversaire);
                             }
 
-                            if (joueur.magie >= joueur.coupSpeciaux.get(choixCoup).coutEnMana) {
+                            if (joueur.magie >= joueur.coupSpeciaux.get(choixCoup).getCoutEnMana()) {
 
-                                adversaire.pv -= joueur.coupSpeciaux.get(choixCoup).puissance;
+                                adversaire.pv -= joueur.coupSpeciaux.get(choixCoup).getPuissance();
 
                                 if (adversaire.pv <= 0) adversaire.pv = 0;
-                                System.out.println(joueur.getNom().toUpperCase() + " attaque avec son ".toUpperCase() + joueur.coupSpeciaux.get(choixCoup).nom.toUpperCase() + "! \n" + "BIM ! PV de " + adversaire.getNom() + " = " + adversaire.pv + "\n");
-                                joueur.magie -= joueur.coupSpeciaux.get(choixCoup).coutEnMana;
+                                System.out.println(joueur.getNom().toUpperCase() + " attaque avec son ".toUpperCase() + joueur.coupSpeciaux.get(choixCoup).getNom().toUpperCase() + "! \n" + "BIM ! PV de " + adversaire.getNom() + " = " + adversaire.pv + "\n");
+                                joueur.magie -= joueur.coupSpeciaux.get(choixCoup).getCoutEnMana();
                             } else {
                                 System.out.println("Le personnage n'a pas assez de magie (magie : " + joueur.magie + " ) ! Saisir une autre action :");
                                 joueurCommence(joueur, adversaire);
@@ -632,11 +632,11 @@ public class Jeu {
     }
 
     public static void gainXpEtOr(Heros joueur, Monstre adversaire, String vainqueur) {
-        joueur.experience += adversaire.niv * 20;
-        int piecesGagnees = (int) Math.pow((int) (Math.random() * (10 + adversaire.niv) + 1), 2);
+        joueur.experience += adversaire.getNiv() * 20;
+        int piecesGagnees = (int) Math.pow((int) (Math.random() * (10 + adversaire.getNiv()) + 1), 2);
         joueur.or += piecesGagnees;
         joueur.pv = joueur.pvMax;
-        System.out.println(vainqueur + " a gagné " + adversaire.niv * 20 + " points d'experience et "
+        System.out.println(vainqueur + " a gagné " + adversaire.getNiv() * 20 + " points d'experience et "
                 + piecesGagnees + " pièces d'or.\nSon total de pièces s'élève à "
                 + joueur.or + " pièces d'or.");
 
@@ -816,7 +816,7 @@ public class Jeu {
         }
 
         System.out.println("\nNouvelles statistiques du Héros :\n"+
-                "Attaque :" +joueur.attaque+", Magie :"+joueur.magie+", Armure: "+joueur.armure+", Pv : "+joueur.pv);
+                "Attaque :" +joueur.attaque+", Magie :"+joueur.magie+", Armure: "+joueur.armure+", Pv : "+joueur.pv+"\n");
     }
 
     public static void chanceDeGagnerCoupSpecial(Heros joueur){
@@ -831,10 +831,10 @@ public class Jeu {
 
         } else if (resultatTirage <= 65) {
             CoupSpecial poingDuDragon = new CoupSpecial("Poing du Dragon",10,30);
-            System.out.println("Le héros a gagné un nouveau coup spécial ! Le "+ poingDuDragon.nom+ " !!!");
-            System.out.println("Puissance : " + poingDuDragon.puissance + ", Coût en mana : "+ poingDuDragon.coutEnMana);
+            System.out.println("Le héros a gagné un nouveau coup spécial ! Le "+ poingDuDragon.getNom()+ " !!!");
+            System.out.println("Puissance : " + poingDuDragon.getPuissance() + ", Coût en mana : "+ poingDuDragon.getCoutEnMana());
             if (joueur.coupSpeciaux.stream()
-                    .anyMatch(coupSpecial -> coupSpecial.nom.equals("Poing du Dragon"))
+                    .anyMatch(coupSpecial -> coupSpecial.getNom().equals("Poing du Dragon"))
             )
             {
                 System.out.println("Mais le héros l'avait déjà ! :( \n");
@@ -845,10 +845,10 @@ public class Jeu {
 
         } else if (resultatTirage <= 80) {
             CoupSpecial meteore = new CoupSpecial("Meteore",20,50);
-            System.out.println("Le héros a gagné un nouveau coup spécial ! Le "+ meteore.nom+ " !!!");
-            System.out.println("Puissance : " + meteore.puissance + ", Coût en mana : "+ meteore.coutEnMana);
+            System.out.println("Le héros a gagné un nouveau coup spécial ! Le "+ meteore.getNom()+ " !!!");
+            System.out.println("Puissance : " + meteore.getPuissance() + ", Coût en mana : "+ meteore.getCoutEnMana());
             if (joueur.coupSpeciaux.stream()
-                    .anyMatch(coupSpecial -> coupSpecial.nom.equals("Meteore"))
+                    .anyMatch(coupSpecial -> coupSpecial.getNom().equals("Meteore"))
             )
             {
                 System.out.println("Mais le héros l'avait déjà ! :( \n");
@@ -858,10 +858,10 @@ public class Jeu {
 
         }else if (resultatTirage <= 95) {
             CoupSpecial bigBang = new CoupSpecial("Big Bang Attack ",30,70);
-            System.out.println("Le héros a gagné un nouveau coup spécial ! Le "+ bigBang.nom+ " !!!");
-            System.out.println("Puissance : " + bigBang.puissance + ", Coût en mana : "+ bigBang.coutEnMana);
+            System.out.println("Le héros a gagné un nouveau coup spécial ! Le "+ bigBang.getNom()+ " !!!");
+            System.out.println("Puissance : " + bigBang.getPuissance() + ", Coût en mana : "+ bigBang.getCoutEnMana());
             if (joueur.coupSpeciaux.stream()
-                    .anyMatch(coupSpecial -> coupSpecial.nom.equals("Big Bang Attack "))
+                    .anyMatch(coupSpecial -> coupSpecial.getNom().equals("Big Bang Attack "))
             )
             {
                 System.out.println("Mais le héros l'avait déjà ! :( \n");
@@ -871,10 +871,10 @@ public class Jeu {
 
         }else {
             CoupSpecial fusion = new CoupSpecial("Fusion Ultime !! ",50,100);
-            System.out.println("Le héros a gagné un nouveau coup spécial ! Le "+ fusion.nom+ " !!!");
-            System.out.println("Puissance : " + fusion.puissance + ", Coût en mana : "+ fusion.coutEnMana);
+            System.out.println("Le héros a gagné un nouveau coup spécial ! Le "+ fusion.getNom()+ " !!!");
+            System.out.println("Puissance : " + fusion.getPuissance() + ", Coût en mana : "+ fusion.getCoutEnMana());
             if (joueur.coupSpeciaux.stream()
-                    .anyMatch(coupSpecial -> coupSpecial.nom.equals("Fusion Ultime !! "))
+                    .anyMatch(coupSpecial -> coupSpecial.getNom().equals("Fusion Ultime !! "))
             )
             {
                 System.out.println("Mais le héros l'avait déjà ! :( \n");

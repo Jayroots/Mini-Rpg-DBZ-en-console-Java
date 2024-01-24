@@ -48,9 +48,9 @@ public class Heros extends Personnage{
     public void lireCoupsSpeciaux(Heros joueur){
         for(int i = 0; i < joueur.coupSpeciaux.size();i++) {
             System.out.println(i+" :");
-            System.out.println(joueur.coupSpeciaux.get(i).nom);
-            System.out.println(joueur.coupSpeciaux.get(i).puissance + " d'attaque");
-            System.out.println(joueur.coupSpeciaux.get(i).coutEnMana + " de mana\n");
+            System.out.println(joueur.coupSpeciaux.get(i).getNom());
+            System.out.println(joueur.coupSpeciaux.get(i).getPuissance() + " d'attaque");
+            System.out.println(joueur.coupSpeciaux.get(i).getCoutEnMana() + " de mana\n");
 
         }
     }
