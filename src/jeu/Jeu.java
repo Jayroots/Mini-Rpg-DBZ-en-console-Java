@@ -81,10 +81,31 @@ public class Jeu {
         combatFini = false;
         String vainqueur = "";
 
-
-        boutique.lireBoutique();
         System.out.println("Le combat va bientôt commencer contre " + adversaire.nom.toUpperCase() + " !");
-        achatPotions(joueur, adversaire, boutique);
+
+        try{
+            Scanner scan = new Scanner(System.in);
+            System.out.println(joueur.nom + ", veux tu faire un achat dans la boutique OUI (1) ou NON (2) ?");
+            int choixBoutique = scan.nextInt();
+            switch (choixBoutique){
+                case 1 :
+                    boutique.lireBoutique();
+                    achatPotions(joueur, adversaire, boutique);
+                    break;
+
+                case 2 :
+                    System.out.println("C'est noté ! ");
+                    break;
+
+                default:
+                    System.out.println("Erreur de saisie ");
+                    combattre(joueur,adversaire,boutique);
+                    break;
+            }
+        }catch(Exception e){
+            System.out.println("Saisie Invalide : "+ e.getMessage());
+        }
+
 
         if (joueur.vitesse >= adversaire.vitesse) {
             joueurCommence(joueur, adversaire);
@@ -607,7 +628,7 @@ public class Jeu {
         }
 
         System.out.println("\nStatistiques du Héros :\n"+
-                "Attaque :" +joueur.attaque+", Magie :"+joueur.magie+", Armure: "+joueur.armure+", Pv : "+joueur.pv);
+                "Attaque :" +joueur.attaque+", Magie :"+joueur.magie+", Armure: "+joueur.armure+", Pv : "+joueur.pv+"\n");
     }
 
     public static void gainXpEtOr(Heros joueur, Monstre adversaire, String vainqueur) {
