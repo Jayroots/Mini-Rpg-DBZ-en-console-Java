@@ -806,31 +806,61 @@ public class Jeu {
         if (resultatTirage <= 50 ) {
             System.out.println("Dommage ! Le héros n'a gagné aucun nouveau coup spécial .. :( \n");
 
+
+
         } else if (resultatTirage <= 65) {
             CoupSpecial poingDuDragon = new CoupSpecial("Poing du Dragon",10,30);
             System.out.println("Le héros a gagné un nouveau coup spécial ! Le "+ poingDuDragon.nom+ " !!!");
             System.out.println("Puissance : " + poingDuDragon.puissance + ", Coût en mana : "+ poingDuDragon.coutEnMana);
-            joueur.coupSpeciaux.add(poingDuDragon );
-
+            if (joueur.coupSpeciaux.stream()
+                    .anyMatch(coupSpecial -> coupSpecial.nom.equals("Poing du Dragon"))
+            )
+            {
+                System.out.println("Mais le héros l'avait déjà ! :( \n");
+            } else {
+                joueur.coupSpeciaux.add(poingDuDragon);
+            }
 
 
         } else if (resultatTirage <= 80) {
             CoupSpecial meteore = new CoupSpecial("Meteore",20,50);
             System.out.println("Le héros a gagné un nouveau coup spécial ! Le "+ meteore.nom+ " !!!");
             System.out.println("Puissance : " + meteore.puissance + ", Coût en mana : "+ meteore.coutEnMana);
-            joueur.coupSpeciaux.add(meteore );
+            if (joueur.coupSpeciaux.stream()
+                    .anyMatch(coupSpecial -> coupSpecial.nom.equals("Meteore"))
+            )
+            {
+                System.out.println("Mais le héros l'avait déjà ! :( \n");
+            } else {
+                joueur.coupSpeciaux.add(meteore);
+            }
 
         }else if (resultatTirage <= 95) {
             CoupSpecial bigBang = new CoupSpecial("Big Bang Attack ",30,70);
             System.out.println("Le héros a gagné un nouveau coup spécial ! Le "+ bigBang.nom+ " !!!");
             System.out.println("Puissance : " + bigBang.puissance + ", Coût en mana : "+ bigBang.coutEnMana);
-            joueur.coupSpeciaux.add(bigBang );
+            if (joueur.coupSpeciaux.stream()
+                    .anyMatch(coupSpecial -> coupSpecial.nom.equals("Big Bang Attack "))
+            )
+            {
+                System.out.println("Mais le héros l'avait déjà ! :( \n");
+            } else {
+                joueur.coupSpeciaux.add(bigBang);
+            }
 
         }else {
             CoupSpecial fusion = new CoupSpecial("Fusion Ultime !! ",50,100);
             System.out.println("Le héros a gagné un nouveau coup spécial ! Le "+ fusion.nom+ " !!!");
             System.out.println("Puissance : " + fusion.puissance + ", Coût en mana : "+ fusion.coutEnMana);
-            joueur.coupSpeciaux.add(fusion );
+            if (joueur.coupSpeciaux.stream()
+                    .anyMatch(coupSpecial -> coupSpecial.nom.equals("Fusion Ultime !! "))
+            )
+            {
+                System.out.println("Mais le héros l'avait déjà ! :( \n");
+            } else {
+                joueur.coupSpeciaux.add(fusion);
+            }
+
 
         }
 
