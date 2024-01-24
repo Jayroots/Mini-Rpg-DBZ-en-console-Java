@@ -1,12 +1,19 @@
 package objets;
 
 public class Equipement {
-    public String nom ;
-    public int bonusAttaque;
-    public int bonusMagie;
-    public int bonusArmure;
-    public int bonusPv;
+    protected String nom ;
+    protected int bonusAttaque;
+    protected int bonusMagie;
+    protected int bonusArmure;
+    protected int bonusPv;
 
+    public int getBonusPv() {
+        return bonusPv;
+    }
+
+    public void setBonusPv(int bonusPv) {
+        this.bonusPv = bonusPv;
+    }
 
     public Equipement(String nom, int bonusAttaque, int bonusMagie, int bonusArmure, int bonusPv) {
         this.nom = nom;

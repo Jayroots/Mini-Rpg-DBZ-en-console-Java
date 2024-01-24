@@ -3,10 +3,9 @@ package personnages;
 import objets.Equipement;
 import objets.Potions;
 import sort.CoupSpecial;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+
 
 public class Heros extends Personnage{
 
@@ -28,10 +27,8 @@ public class Heros extends Personnage{
     public HashMap<String, Equipement> inventaireEquipements = new HashMap<>();
 
 
-public void afficherHeros(List<Heros> tableauDesHeros){
 
-}
-    public Heros(){};
+    public Heros(){}
 
     public Heros(int experience, int or) {
         this.experience = experience;
@@ -40,10 +37,10 @@ public void afficherHeros(List<Heros> tableauDesHeros){
     public void lirePotions(){
         for(int i = 0; i < potions.size();i++) {
             System.out.println(i+1);
-            System.out.println(potions.get(i).nom);
-            System.out.println(potions.get(i).prix + " pièces d'or");
-            System.out.println("redonne "+ potions.get(i).gainDePv + " points de vie");
-            System.out.println("redonne "+ potions.get(i).gainDeMana + " points de magie\n");
+            System.out.println(potions.get(i).getNom());
+            System.out.println(potions.get(i).getPrix() + " pièces d'or");
+            System.out.println("redonne "+ potions.get(i).getGainDePv() + " points de vie");
+            System.out.println("redonne "+ potions.get(i).getGainDeMana() + " points de magie\n");
 
         }
     }

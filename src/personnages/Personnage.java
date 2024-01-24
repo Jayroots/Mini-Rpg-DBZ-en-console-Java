@@ -1,13 +1,13 @@
 package personnages;
 
 public abstract class Personnage {
-    public String nom;
+    protected String nom;
     public int pvMax;
     public int pv = pvMax;
     public int attaque;
     public int armure;
 
-    public int vitesse;
+    protected int vitesse;
 
 
 
