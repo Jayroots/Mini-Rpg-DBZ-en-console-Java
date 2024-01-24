@@ -31,9 +31,9 @@ public class MainClass {
         boutiqueDePotions.ajouterPotion(fioleOrange);
 
 
-        Heros sangoku = new Heros("San Goku", 150,150,20,3,20,0,1,20,20);
-        Heros vegeta = new Heros("Vegeta", 130, 130,18,3,40, 0,1,20,20);
-        Heros sangohan = new Heros("San Gohan", 100, 100, 13,2,60,0,1,20,20);
+        Heros sangoku = new Heros("San Goku", 150,150,20,3,20,40,1,20,20);
+        Heros vegeta = new Heros("Vegeta", 130, 130,18,3,40, 40,1,20,20);
+        Heros sangohan = new Heros("San Gohan", 100, 100, 13,2,60,40,1,20,20);
 
         ArrayList<Heros> tableauDesHeros = new ArrayList<>();
         tableauDesHeros.add(sangoku);

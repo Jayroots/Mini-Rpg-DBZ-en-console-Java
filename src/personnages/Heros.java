@@ -39,6 +39,7 @@ public void afficherHeros(List<Heros> tableauDesHeros){
     }
     public void lirePotions(){
         for(int i = 0; i < potions.size();i++) {
+            System.out.println(i+1);
             System.out.println(potions.get(i).nom);
             System.out.println(potions.get(i).prix + " pièces d'or");
             System.out.println("redonne "+ potions.get(i).gainDePv + " points de vie");
@@ -49,10 +50,10 @@ public void afficherHeros(List<Heros> tableauDesHeros){
 
     public void lireCoupsSpeciaux(Heros joueur){
         for(int i = 0; i < joueur.coupSpeciaux.size();i++) {
-            System.out.println(i);
+            System.out.println(i+" :");
             System.out.println(joueur.coupSpeciaux.get(i).nom);
             System.out.println(joueur.coupSpeciaux.get(i).puissance + " d'attaque");
-            System.out.println(joueur.coupSpeciaux.get(i).coutEnMana + " de mana");
+            System.out.println(joueur.coupSpeciaux.get(i).coutEnMana + " de mana\n");
 
         }
     }

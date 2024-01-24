@@ -161,9 +161,15 @@ public class Jeu {
                     case 4:
                         if (joueur.potions.size() != 0) {
                             joueur.lirePotions();
-                            System.out.println(joueur.nom + ", quelle potion voulez-vous utiliser : la 1ere (1), 2eme (2), 3eme (3)..? ");
+                            System.out.println(joueur.nom + ", quelle potion voulez-vous utiliser : la 1ere (1), 2eme (2).. ou annuler l'opération (0) ? ");
                             int choixPotion = scan.nextInt();
                             switch (choixPotion) {
+
+                                case 0:
+                                    System.out.println("Vous avez annulé l'utilisation de potions");
+                                    joueurCommence(joueur, adversaire);
+                                    break;
+
                                 case 1:
                                     joueur.pv += joueur.potions.getFirst().gainDePv;
                                     if (joueur.pv > joueur.pvMax) {
@@ -282,9 +288,13 @@ public class Jeu {
                     case 5:
                         joueur.lireCoupsSpeciaux(joueur);
 
-                        System.out.println("Veux-tu utiliser le 1er coup special (0) ou le 2e (1) ?");
+                        System.out.println("Veux-tu utiliser le 1er coup special (0) ou le 2e (1).. ou annuler (9) ?");
                         int choixCoup = scan.nextInt();
 
+                        if(choixCoup == 9){
+                            System.out.println("Vous avez annulé l'utilisation de coup spécial");
+                            joueurCommence(joueur,adversaire);
+                        }
                         if (joueur.magie >= joueur.coupSpeciaux.get(choixCoup).coutEnMana) {
 
                             adversaire.pv -= joueur.coupSpeciaux.get(choixCoup).puissance;
@@ -296,6 +306,7 @@ public class Jeu {
                             System.out.println("Le personnage n'a pas assez de magie (magie : " + joueur.magie + " ) ! Saisir une autre action :");
                             joueurCommence(joueur, adversaire);
                         }
+
 
                         break;
 
@@ -389,9 +400,14 @@ public class Jeu {
                         case 4:
                             if (joueur.potions.size() != 0) {
                                 joueur.lirePotions();
-                                System.out.println(joueur.nom + ", quelle potion voulez-vous utiliser : la 1ere (1), 2eme (2), 3eme (3)..? ");
+                                System.out.println(joueur.nom + ", quelle potion voulez-vous utiliser : la 1ere (1), 2eme (2).. ou annuler l'opération (0) ?");
                                 int choixPotion = scan.nextInt();
                                 switch (choixPotion) {
+
+                                    case 0:
+                                        System.out.println("Vous avez annulé l'utilisation de potions");
+                                        joueurCommence(joueur, adversaire);
+                                        break;
                                     case 1:
                                         joueur.pv += joueur.potions.getFirst().gainDePv;
                                         if (joueur.pv > joueur.pvMax) {
@@ -509,8 +525,13 @@ public class Jeu {
                         case 5:
                             joueur.lireCoupsSpeciaux(joueur);
 
-                            System.out.println("Veux-tu utiliser le 1er coup special (0) ou le 2e (1) ?");
+                            System.out.println("Veux-tu utiliser le 1er coup special (0) ou le 2e (1).. ou annuler (9) ?");
                             int choixCoup = scan.nextInt();
+
+                            if(choixCoup == 9){
+                                System.out.println("Vous avez annulé l'utilisation de coup spécial");
+                                joueurCommence(joueur,adversaire);
+                            }
 
                             if (joueur.magie >= joueur.coupSpeciaux.get(choixCoup).coutEnMana) {
 
@@ -523,6 +544,7 @@ public class Jeu {
                                 System.out.println("Le personnage n'a pas assez de magie (magie : " + joueur.magie + " ) ! Saisir une autre action :");
                                 joueurCommence(joueur, adversaire);
                             }
+
 
                             break;
 
