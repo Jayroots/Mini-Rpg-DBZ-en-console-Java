@@ -72,7 +72,7 @@ public class Jeu {
 
         if (joueur.inventaireEquipements.get("casque") == null) {
             System.out.println("Le héros n'a pas de Casque équipé.");
-            ;
+
         } else {
 
             joueur.setPvMax(joueur.getPvMax() + joueur.inventaireEquipements.get("casque").getBonusPv());
@@ -83,7 +83,7 @@ public class Jeu {
 
         if (joueur.inventaireEquipements.get("arme") == null) {
             System.out.println("Le héros n'a pas d'Arme équipée.");
-            ;
+
 
         } else {
             joueur.setAttaque(joueur.getAttaque() + joueur.inventaireEquipements.get("arme").getBonusAttaque());
@@ -103,7 +103,7 @@ public class Jeu {
 
         if (joueur.inventaireEquipements.get("armure") == null) {
             System.out.println("Le héros n'a pas d'Armure équipée.");
-            ;
+
 
         } else {
             joueur.setArmure(joueur.getArmure() + joueur.inventaireEquipements.get("armure").getBonusArmure());
@@ -270,7 +270,7 @@ public class Jeu {
                         break;
 
                     case 4:
-                        if (joueur.potions.size() != 0) {
+                        if (!joueur.potions.isEmpty()) {
                             joueur.lirePotions();
                             System.out.println(joueur.getNom() + ", quelle potion voulez-vous utiliser : la 1ere (1), 2eme (2).. ou annuler l'opération (0) ? ");
                             int choixPotion = scan.nextInt();
@@ -286,12 +286,12 @@ public class Jeu {
                                     if (joueur.getPv() > joueur.getPvMax()) {
                                         joueur.setPv(joueur.getPvMax());
                                     }
-                                    ;
+
                                     joueur.setMagie(joueur.getMagie() + joueur.potions.getFirst().getGainDeMana());
                                     if (joueur.getMagie() > joueur.getMagieMax()) {
                                         joueur.setMagie(joueur.getMagieMax());
                                     }
-                                    ;
+
                                     System.out.println("Une " + joueur.potions.getFirst().getNom() + " a été utlisée.");
                                     joueur.potions.removeFirst();
                                     System.out.println("Le joueur a maintenant " + joueur.getPv() + " pv et " + joueur.getMagie() + " points de mana");
@@ -303,12 +303,12 @@ public class Jeu {
                                         if (joueur.getPv() > joueur.getPvMax()) {
                                             joueur.setPv(joueur.getPvMax());
                                         }
-                                        ;
+
                                         joueur.setMagie(joueur.getMagie() + joueur.potions.get(1).getGainDeMana());
                                         if (joueur.getMagie() > joueur.getMagieMax()) {
                                             joueur.setMagie(joueur.getMagieMax());
                                         }
-                                        ;
+
                                         System.out.println("Une " + joueur.potions.get(1).getNom() + " a été utlisée.");
                                         joueur.potions.remove(1);
                                         System.out.println("Le joueur a maintenant " + joueur.getPv() + " pv et " + joueur.getMagie() + " points de mana");
@@ -325,12 +325,12 @@ public class Jeu {
                                         if (joueur.getPv() > joueur.getPvMax()) {
                                             joueur.setPv(joueur.getPvMax());
                                         }
-                                        ;
+
                                         joueur.setMagie(joueur.getMagie() + joueur.potions.get(2).getGainDeMana());
                                         if (joueur.getMagie() > joueur.getMagieMax()) {
                                             joueur.setMagie(joueur.getMagieMax());
                                         }
-                                        ;
+
                                         System.out.println("Une " + joueur.potions.get(2).getNom() + " a été utlisée.");
                                         joueur.potions.remove(2);
                                         System.out.println("Le joueur a maintenant " + joueur.getPv() + " pv et " + joueur.getMagie() + " points de mana");
@@ -346,12 +346,12 @@ public class Jeu {
                                         if (joueur.getPv() > joueur.getPvMax()) {
                                             joueur.setPv(joueur.getPv() + joueur.getPvMax());
                                         }
-                                        ;
+
                                         joueur.setMagie(joueur.getMagie() + joueur.potions.get(3).getGainDeMana());
                                         if (joueur.getMagie() > joueur.getMagieMax()) {
                                             joueur.setMagie(joueur.getMagieMax());
                                         }
-                                        ;
+
                                         System.out.println("Une " + joueur.potions.get(3).getNom() + " a été utlisée.");
                                         joueur.potions.remove(3);
                                         System.out.println("Le joueur a maintenant " + joueur.getPv() + " pv et " + joueur.getMagie() + " points de mana");
@@ -368,12 +368,12 @@ public class Jeu {
                                         if (joueur.getPv() > joueur.getPvMax()) {
                                             joueur.setPv(joueur.getPvMax());
                                         }
-                                        ;
+
                                         joueur.setMagie(joueur.getMagie() + joueur.potions.get(4).getGainDeMana());
                                         if (joueur.getMagie() > joueur.getMagieMax()) {
                                             joueur.setMagie(joueur.getMagieMax());
                                         }
-                                        ;
+
                                         System.out.println("Une " + joueur.potions.get(4).getNom() + " a été utlisée.");
                                         joueur.potions.remove(4);
                                         System.out.println("Le joueur a maintenant " + joueur.getPv() + " pv et " + joueur.getMagie() + " points de mana");

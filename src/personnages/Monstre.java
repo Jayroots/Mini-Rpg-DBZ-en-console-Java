@@ -7,7 +7,7 @@ public class Monstre extends Personnage{
 
 
 
-    public Monstre(){};
+    public Monstre(){}
     public Monstre(int niv) {
         this.niv = niv;
     }
