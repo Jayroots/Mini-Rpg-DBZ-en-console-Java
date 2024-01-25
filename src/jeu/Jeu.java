@@ -23,20 +23,11 @@ public class Jeu {
 
         miseEnPlaceEquipement(joueur);
 
-//
-//        for (int i = 0; i < 10; i++)
-//
 
-        Monstre adversaire1 = genererAdversaire(tableauDesMonstres);
-        combattre(joueur, adversaire1, boutique);
-        Monstre adversaire2 = genererAdversaire(tableauDesMonstres);
-        combattre(joueur, adversaire2, boutique);
-        Monstre adversaire3 = genererAdversaire(tableauDesMonstres);
-        combattre(joueur, adversaire3, boutique);
-        Monstre adversaire4 = genererAdversaire(tableauDesMonstres);
-        combattre(joueur, adversaire4, boutique);
-        Monstre adversaire5 = genererAdversaire(tableauDesMonstres);
-        combattre(joueur, adversaire5, boutique);
+        for (int i = 0; i < 10; i++){
+            Monstre adversaire = genererAdversaire(tableauDesMonstres);
+            combattre(joueur, adversaire, boutique);
+    }
 
     }
 
@@ -270,7 +261,7 @@ public class Jeu {
 
                             if (adversaire.getPv() <= 0) adversaire.setPv(0);
                             System.out.println(joueur.getNom() + " utilise sa magie ! \n" + "BIM ! PV de " + adversaire.getNom() + " = " + adversaire.getPv() + "\n");
-                            joueur.setMagie(joueur.getMagie() + 5);
+                            joueur.setMagie(joueur.getMagie() - 5);
                         } else {
                             System.out.println("Le personnage n'a pas assez de magie (magie : " + joueur.getMagie() + " ) ! Saisir une autre action :");
                             joueurCommence(joueur, adversaire);
@@ -641,7 +632,7 @@ public class Jeu {
 
         }
 
-        System.out.println("\nNouvelles statistiques du Héros :\n" +
+        System.out.println("\nStatistiques du Héros :\n" +
                 "Attaque :" + joueur.getAttaque() + ", Magie :" + joueur.getMagieMax() + ", Armure: " + joueur.getArmure() + ", Pv : " + joueur.getPvMax() + "\n");
     }
 
@@ -749,7 +740,8 @@ public class Jeu {
                 "⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
                 "⠀⠀⣾⣿⠟⠁⠈⠛⠛⠛⠛⠋⠁⠉⠉⠻⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
                 "⠀⠀⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"+
-                "           BIENVENUE DRAGON BALL Z RPG !!!!!!!!!!!!\n");
+                "      \n**************     BIENVENUE DRAGON BALL Z RPG !!!!!!!!!!!!      **************\n"+
+                "                           __________________                                      \n");
     }
 
 
