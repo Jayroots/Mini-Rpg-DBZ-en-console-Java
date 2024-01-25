@@ -9,14 +9,14 @@ import java.util.HashMap;
 
 public class Heros extends Personnage{
 
-    public int experience = 0;
+    protected int experience = 0;
 
-    public int or = 0;
+    protected int or = 0;
 
-    public int niv = 1;
+    protected int niv = 1;
 
-    public int magieMax ;
-    public int magie = magieMax;
+    protected int magieMax ;
+    protected int magie = magieMax;
 
 
 
@@ -133,5 +133,14 @@ public class Heros extends Personnage{
 
     public void setOr(int or) {
         this.or = or;
+    }
+
+
+    public int getNiv() {
+        return niv;
+    }
+
+    public void setNiv(int niv) {
+        this.niv = niv;
     }
 }
