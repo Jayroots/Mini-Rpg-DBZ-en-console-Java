@@ -18,6 +18,8 @@ public class Heros extends Personnage{
     protected int magieMax ;
     protected int magie = magieMax;
 
+    protected String image;
+
 
 
     public ArrayList<Potions> potions = new ArrayList<>();
@@ -142,5 +144,14 @@ public class Heros extends Personnage{
 
     public void setNiv(int niv) {
         this.niv = niv;
+    }
+
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
