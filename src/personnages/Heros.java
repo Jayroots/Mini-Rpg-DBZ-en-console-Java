@@ -38,7 +38,7 @@ public class Heros extends Personnage{
     }
     public void lirePotions(){
         for(int i = 0; i < potions.size();i++) {
-            System.out.println(i+1);
+            System.out.println(i);
             System.out.println(potions.get(i).getNom());
             System.out.println(potions.get(i).getPrix() + " pièces d'or");
             System.out.println("redonne "+ potions.get(i).getGainDePv() + " points de vie");
