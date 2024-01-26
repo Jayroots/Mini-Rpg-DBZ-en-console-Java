@@ -3,21 +3,22 @@ package personnages;
 import objets.Equipement;
 import objets.Potions;
 import sort.CoupSpecial;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+
 
 public class Heros extends Personnage{
 
-    public int experience = 0;
+    protected int experience = 0;
 
-    public int or = 0;
+    protected int or = 0;
 
-    public int niv = 1;
+    protected int niv = 1;
 
-    public int magieMax ;
-    public int magie = magieMax;
+    protected int magieMax ;
+    protected int magie = magieMax;
+
+    protected String image;
 
 
 
@@ -28,10 +29,8 @@ public class Heros extends Personnage{
     public HashMap<String, Equipement> inventaireEquipements = new HashMap<>();
 
 
-public void afficherHeros(List<Heros> tableauDesHeros){
 
-}
-    public Heros(){};
+    public Heros(){}
 
     public Heros(int experience, int or) {
         this.experience = experience;
@@ -39,11 +38,11 @@ public void afficherHeros(List<Heros> tableauDesHeros){
     }
     public void lirePotions(){
         for(int i = 0; i < potions.size();i++) {
-            System.out.println(i+1);
-            System.out.println(potions.get(i).nom);
-            System.out.println(potions.get(i).prix + " pièces d'or");
-            System.out.println("redonne "+ potions.get(i).gainDePv + " points de vie");
-            System.out.println("redonne "+ potions.get(i).gainDeMana + " points de magie\n");
+            System.out.println(i);
+            System.out.println(potions.get(i).getNom());
+            System.out.println(potions.get(i).getPrix() + " pièces d'or");
+            System.out.println("redonne "+ potions.get(i).getGainDePv() + " points de vie");
+            System.out.println("redonne "+ potions.get(i).getGainDeMana() + " points de magie\n");
 
         }
     }
@@ -51,9 +50,9 @@ public void afficherHeros(List<Heros> tableauDesHeros){
     public void lireCoupsSpeciaux(Heros joueur){
         for(int i = 0; i < joueur.coupSpeciaux.size();i++) {
             System.out.println(i+" :");
-            System.out.println(joueur.coupSpeciaux.get(i).nom);
-            System.out.println(joueur.coupSpeciaux.get(i).puissance + " d'attaque");
-            System.out.println(joueur.coupSpeciaux.get(i).coutEnMana + " de mana\n");
+            System.out.println(joueur.coupSpeciaux.get(i).getNom());
+            System.out.println(joueur.coupSpeciaux.get(i).getPuissance() + " d'attaque");
+            System.out.println(joueur.coupSpeciaux.get(i).getCoutEnMana() + " de mana\n");
 
         }
     }
@@ -136,5 +135,23 @@ public void afficherHeros(List<Heros> tableauDesHeros){
 
     public void setOr(int or) {
         this.or = or;
+    }
+
+
+    public int getNiv() {
+        return niv;
+    }
+
+    public void setNiv(int niv) {
+        this.niv = niv;
+    }
+
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

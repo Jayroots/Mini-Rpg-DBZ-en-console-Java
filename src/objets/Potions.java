@@ -2,16 +2,22 @@ package objets;
 
 public class Potions {
 
-    public int index;
+    protected int index;
 
-    public String nom;
-    public int prix ;
-    public int gainDePv;
+    protected String nom;
+    protected int prix ;
+    protected int gainDePv;
 
-    public int gainDeMana;
+    protected int gainDeMana;
 
 
+    public int getGainDeMana() {
+        return gainDeMana;
+    }
 
+    public void setGainDeMana(int gainDeMana) {
+        this.gainDeMana = gainDeMana;
+    }
 
     public Potions(int index, String nom, int prix, int gainDePv, int gainDeMana) {
         this.index = index;

@@ -15,7 +15,7 @@ public class Boutique {
     public void lireBoutique(){
         System.out.println("\nVoici ce que vous propose le marchand : ");
         for(int i = 0; i < boutique.size();i++) {
-            System.out.println(boutique.get(i).index + " :");
+            System.out.println(i + " :");
             System.out.println(boutique.get(i).nom);
             System.out.println(boutique.get(i).prix + " pièces d'or");
             System.out.println("redonne "+ boutique.get(i).gainDePv + " points de vie");

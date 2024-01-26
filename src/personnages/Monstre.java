@@ -1,13 +1,13 @@
 package personnages;
 
 public class Monstre extends Personnage{
-    public int niv ;
+    protected int niv ;
 
 
 
 
 
-    public Monstre(){};
+    public Monstre(){}
     public Monstre(int niv) {
         this.niv = niv;
     }

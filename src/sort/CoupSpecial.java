@@ -1,14 +1,14 @@
 package sort;
 
-import personnages.Heros;
+
 
 public class CoupSpecial {
 
-    public String nom;
+    protected String nom;
 
-    public int coutEnMana;
+    protected int coutEnMana;
 
-    public int puissance;
+    protected int puissance;
 
 
 
